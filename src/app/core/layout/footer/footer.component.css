@@ -1,0 +1,46 @@
+.footer {
+  height: 180px;
+  background-color: #fae3ba;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-buttons {
+  display: flex;
+  column-gap: 15px;
+  margin-bottom: 10px;
+}
+
+.home-button,
+.catalog-button,
+.about-button,
+.github-button {
+  font-size: 15px;
+  color: #be7339;
+  text-decoration: none;
+  cursor: pointer;
+  transition: text-decoration 0.15s;
+}
+
+.home-button:hover,
+.catalog-button:hover,
+.about-button:hover,
+.github-button:hover {
+  text-decoration: underline;
+}
+
+.disclaimer {
+  width: 100%;
+  font-size: 15px;
+  color: #d86f6f;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 10px;
+  border-top: 1px #be7339 solid;
+  text-align: center;
+}
