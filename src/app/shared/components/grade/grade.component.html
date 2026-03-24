@@ -1,0 +1,12 @@
+<div class="container">
+  @for (star of starContent; track $index) {
+    @if (star == "filled") {
+      <img class="star-icon" src="/icons/stars/star-filled.svg" />
+    } @else if (star == "half") {
+      <img class="star-icon" src="icons/stars/star-half-filled.svg" />
+    } @else {
+      <img class="star-icon" src="/icons/stars/star-empty.svg" />
+    }
+  }
+  <div class="review-number">({{ totalReviews }})</div>
+</div>
