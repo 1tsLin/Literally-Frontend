@@ -11,9 +11,9 @@
     </div>
     <div class="filters">Filtres</div>
     <div class="products">
-      <app-catalog-product></app-catalog-product>
-      <app-catalog-product></app-catalog-product>
-      <app-catalog-product></app-catalog-product>
+      @for (product of catalogProducts; track product) {
+        <app-catalog-product [product]="product"></app-catalog-product>
+      }
     </div>
   </div>
 </div>

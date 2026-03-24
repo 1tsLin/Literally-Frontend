@@ -13,14 +13,12 @@
 
 .filters {
   background-color: lightblue;
-  height: 400px;
 }
 
 .products {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
-  background-color: lightpink;
 
   padding: 1rem;
 }

@@ -1,20 +1,26 @@
 <div class="card">
   <div class="book-cover">
-    <img src="/book-cover/runes-vol.2.jpg" />
+    <img [src]="product.illustration" />
   </div>
   <div class="book-content">
     <div class="favorite-button-row">
       <button class="add-favorite-button">
-        <img src="/icons/add-favorite.svg" />
+        @if (product.isFavorite) {
+          <img src="/icons/added-favorite.svg" />
+        } @else {
+          <img src="/icons/add-favorite.svg" />
+        }
       </button>
     </div>
     <p class="book-title">
-      Titre du livrea qui peut être très très long genre vraiment super long
-      quand on y pense
+      {{ product.title }}
     </p>
-    <p class="book-author">Nom de l'auteur wahou</p>
-    <app-grade [grade]="3.9" [totalReviews]="3"></app-grade>
-    <p class="book-price">19.99<span class="currency">€</span></p>
+    <p class="book-author">{{ product.author }}</p>
+    <app-grade
+      [grade]="product.grade"
+      [totalReviews]="product.totalReview"
+    ></app-grade>
+    <p class="book-price">{{ product.price }}<span class="currency">€</span></p>
     <div class="cart-button-row">
       <button class="add-cart-button">Ajouter au panier</button>
     </div>
