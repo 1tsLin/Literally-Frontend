@@ -5,12 +5,23 @@
 -->
 
 <div class="page-content">
+  <!-- Admin section -->
+  @if (isAdmin) {
+    <div class="admin-section">
+      <button class="create-product-button">Créer un produit</button>
+    </div>
+  }
   <div class="catalog-section">
+    <!-- Mobile version of filters -->
     <div class="filters-mobile-btn">
       <button>Test</button>
     </div>
-    <div class="filters">Filtres</div>
-    <div class="products">
+    <!-- Desktop version of filters -->
+    <div class="filters-section">
+      <app-catalog-filters></app-catalog-filters>
+    </div>
+    <!-- Products grid / Catalog -->
+    <div class="products-section">
       @for (product of catalogProducts; track product) {
         <app-catalog-product [product]="product"></app-catalog-product>
       }

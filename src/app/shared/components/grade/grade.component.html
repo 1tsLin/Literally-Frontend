@@ -8,5 +8,7 @@
       <img class="star-icon" src="/icons/stars/star-empty.svg" />
     }
   }
-  <div class="review-number">({{ totalReviews }})</div>
+  @if (totalReviews) {
+    <div class="review-number">({{ totalReviews }})</div>
+  }
 </div>

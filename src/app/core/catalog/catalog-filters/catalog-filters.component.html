@@ -1,0 +1,103 @@
+<div class="filters">
+  <p class="headtitle">Filtres</p>
+
+  @for (filterType of filterTypes; track filterType) {
+    <div class="filter-container">
+      <div class="filter-row">
+        <p class="filter-title">{{ filterType }}</p>
+        <button class="see-filter-button" (click)="updateFilterUI(filterType)">
+          @if (filterState[filterType]) {
+            <img src="/icons/filters/less-icon.svg" />
+          } @else {
+            <img src="/icons/filters/more-icon.svg" />
+          }
+        </button>
+      </div>
+      @if (filterState[filterType]) {
+        @switch (filterType) {
+          @case (FilterTypeEnum.PRICE) {
+            <ng-container [ngTemplateOutlet]="priceFilter"></ng-container>
+          }
+          @case (FilterTypeEnum.COLLECTION) {
+            <ng-container [ngTemplateOutlet]="collectionFilter"></ng-container>
+          }
+          @case (FilterTypeEnum.GRADE) {
+            <ng-container [ngTemplateOutlet]="gradeFilter"></ng-container>
+          }
+          @case (FilterTypeEnum.FORMAT) {
+            <ng-container [ngTemplateOutlet]="formatFilter"></ng-container>
+          }
+          @case (FilterTypeEnum.GENRE) {
+            <ng-container [ngTemplateOutlet]="genreFilter"></ng-container>
+          }
+          @case (FilterTypeEnum.AUDIENCE) {
+            <ng-container [ngTemplateOutlet]="audienceFilter"></ng-container>
+          }
+          @case (FilterTypeEnum.CONTRIBUTOR) {
+            <ng-container [ngTemplateOutlet]="contributorFilter"></ng-container>
+          }
+        }
+      }
+    </div>
+  }
+
+  <!-- Expanded price filter -->
+  <ng-template #priceFilter>
+    <div class="expanded-filter-container">
+      <div class="price-range">
+        <p>0€</p>
+        <p>{{ selectedPrice }}€</p>
+      </div>
+      <input
+        type="range"
+        class="price-slider"
+        min="0"
+        max="150"
+        [(ngModel)]="selectedPrice"
+      />
+    </div>
+  </ng-template>
+
+  <!-- Expanded collection filter -->
+  <ng-template #collectionFilter>
+    <div class="expanded-filter-container">Oui</div>
+  </ng-template>
+
+  <!-- Expanded grade filter -->
+  <ng-template #gradeFilter>
+    <div class="expanded-filter-container">
+      @for (i of [0, 1, 2, 3, 4]; track i) {
+        <div class="grade-row">
+          <input
+            type="radio"
+            name="grade-filter"
+            [value]="i"
+            [(ngModel)]="selectedGrade"
+          />
+          <app-grade [grade]="i"></app-grade>
+          <p>et plus</p>
+        </div>
+      }
+    </div>
+  </ng-template>
+
+  <!-- Expanded format filter -->
+  <ng-template #formatFilter>
+    <div class="expanded-filter-container">Oui</div>
+  </ng-template>
+
+  <!-- Expanded genre filter -->
+  <ng-template #genreFilter>
+    <div class="expanded-filter-container">Oui</div>
+  </ng-template>
+
+  <!-- Expanded audience filter -->
+  <ng-template #audienceFilter>
+    <div class="expanded-filter-container">Oui</div>
+  </ng-template>
+
+  <!-- Expanded contributor filter -->
+  <ng-template #contributorFilter>
+    <div class="expanded-filter-container">Oui</div>
+  </ng-template>
+</div>
