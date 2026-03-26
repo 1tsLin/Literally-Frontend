@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { CatalogProductComponent } from './catalog-product/catalog-product.component';
+import { catalogProducts } from '../../shared/dummy-data';
 
 @Component({
   selector: 'app-catalog',
-  imports: [RouterLink],
+  imports: [CatalogProductComponent],
   templateUrl: './catalog.component.html',
   styleUrl: './catalog.component.css',
 })
-export class CatalogComponent {}
+export class CatalogComponent {
+  catalogProducts = catalogProducts;
+}

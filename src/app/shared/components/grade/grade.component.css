@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+}
+
+.star-icon {
+  width: 15px;
+  height: 15px;
+  margin-right: 2px;
+}
+
+.review-number {
+  color: #90baeb;
+  font-size: 14px;
+  margin-left: 2px;
+}
