@@ -1,0 +1,43 @@
+.page-content {
+  padding: 20px 200px 20px 200px;
+}
+
+/*-- Hero section --*/
+.hero-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.hero-section .title {
+  font-size: 32px;
+  font-weight: bold;
+  color: #be7339;
+}
+
+.hero-section .subtitle {
+  color: #be7339;
+  font-size: 24px;
+}
+
+/*-- General info section --*/
+.general-info-section {
+  height: 400px;
+  background-color: lightblue;
+  margin: 10px 30px 10px 30px;
+}
+
+/*-- Responsive Mobile --*/
+@media (max-width: 912px) {
+  .page-content {
+    padding: 10px;
+  }
+}
+
+@media (min-width: 913px) and (max-width: 1365px) {
+  .page-content {
+    padding: 10px 50px 10px 50px;
+  }
+}

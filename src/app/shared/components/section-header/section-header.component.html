@@ -1,0 +1,11 @@
+<div class="container">
+  <p class="title">{{ title }}</p>
+  <hr class="line" />
+  <button class="button" (click)="toggle()">
+    @if (isOpen) {
+      <img src="/icons/sections/minus-icon.svg" />
+    } @else {
+      <img src="/icons/sections/plus-icon.svg" />
+    }
+  </button>
+</div>

@@ -1,18 +1,14 @@
-<p>product-configuration works!</p>
-
-<!-- General product configuration -->
-<div>
-  <div>
-    <label for="series">Series</label>
-    <input type="text" name="series" id="series" />
+<div class="page-content">
+  <div class="hero-section">
+    <p class="title">Configuration de produit</p>
+    <p class="subtitle">{{ heroTitle }}</p>
   </div>
-  <div>
-    <label for="alias">Aliases</label>
-    <input
-      type="text"
-      name="alias"
-      id="alias"
-      placeholder="alises separated by ;"
-    />
-  </div>
+  <!-- Book general info section -->
+  <app-section-header
+    title="Généralités"
+    [(isOpen)]="isGeneralInfoOpen"
+  ></app-section-header>
+  @if (isGeneralInfoOpen) {
+    <div class="general-info-section">test</div>
+  }
 </div>
