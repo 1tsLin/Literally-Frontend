@@ -9,7 +9,7 @@ body {
 }
 
 input[type="range"] {
-  accent-color: #90baeb;
+  accent-color: #4d75a3;
 }
 
 input[type="radio"] {
@@ -26,7 +26,20 @@ input[type="radio"] {
 
 input[type="radio"]:checked {
   background-color: white;
-  color: #90baeb;
+  color: #4d75a3;
   outline: 1px solid #4d75a3;
-  border: 3px solid #90baeb;
+  border: 3px solid #4d75a3;
+}
+
+input[type="checkbox"] {
+  accent-color: #4d75a3;
+  cursor: pointer;
+}
+
+select {
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
+  font-family: Roboto, Arial;
+  border: 1px gray solid;
+  color: #d86f6f;
 }

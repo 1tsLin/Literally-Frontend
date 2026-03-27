@@ -1,6 +1,6 @@
 export enum FilterTypeEnum {
   PRICE = 'PRICE',
-  COLLECTION = 'COLLECTION',
+  SERIE = 'SERIE',
   GRADE = 'GRADE',
   FORMAT = 'FORMAT',
   GENRE = 'GENRE',

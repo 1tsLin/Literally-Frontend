@@ -61,7 +61,23 @@
 
 .filters-mobile-btn {
   display: none;
-  background-color: lightblue;
+  padding: 10px;
+  padding-bottom: 0;
+}
+
+.filters-mobile-btn button {
+  width: 100%;
+  background-color: #d86f6f;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  padding: 14px 20px 14px 20px;
+  font-size: 16px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 /*-- Responsive Mobile --*/
@@ -74,7 +90,7 @@
     grid-template-columns: 1fr;
   }
 
-  .filters {
+  .filters-section {
     display: none;
   }
 

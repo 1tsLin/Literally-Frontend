@@ -9,6 +9,55 @@
   color: #d86f6f;
   font-weight: bold;
   margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.delete-filters-button {
+  background-color: white;
+  border: none;
+  color: #4d75a3;
+  font-weight: bold;
+  cursor: pointer;
+
+  transition: text-decoration 0.15s;
+}
+
+.delete-filters-button:hover {
+  text-decoration: underline;
+}
+
+.filter-tags-section {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.filter-tag-button {
+  background-color: #cee1f8;
+  border: 1px #4d75a3 solid;
+  color: #4d75a3;
+  font-weight: bold;
+  border-radius: 20px;
+  padding: 5px 10px 5px 10px;
+  margin-bottom: 4px;
+  margin-right: 4px;
+  cursor: pointer;
+  transition:
+    color 0.15s,
+    background-color 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.filter-tag-button:hover {
+  color: white;
+  background-color: #4d75a3;
+}
+
+.filter-tag-button img {
+  height: 12px;
+  margin-right: 3px;
 }
 
 /*-- Individual filter --*/
@@ -54,7 +103,7 @@
   justify-content: space-between;
   width: 100%;
   font-size: 15px;
-  color: #90baeb;
+  color: #4d75a3;
 }
 
 .price-slider {
@@ -67,4 +116,27 @@
   font-size: 15px;
   gap: 3px;
   color: #d86f6f;
+}
+
+/*-- Format / Genre / Audience extanded filter --*/
+.format-row,
+.genre-row,
+.audience-row {
+  font-size: 15px;
+  color: #d86f6f;
+}
+
+/*-- Serie / Contributor extanded filter --*/
+.selector {
+  margin-bottom: 10px;
+}
+
+.selector:last-child {
+  margin-bottom: 0;
+}
+
+.selector-label {
+  font-size: 15px;
+  color: #d86f6f;
+  margin-bottom: 2px;
 }

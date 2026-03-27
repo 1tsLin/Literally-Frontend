@@ -12,4 +12,5 @@ import { CatalogFiltersComponent } from './catalog-filters/catalog-filters.compo
 export class CatalogComponent {
   catalogProducts = catalogProducts;
   isAdmin = true;
+  displayMobileFilter = false;
 }

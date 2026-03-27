@@ -14,7 +14,12 @@
   <div class="catalog-section">
     <!-- Mobile version of filters -->
     <div class="filters-mobile-btn">
-      <button>Test</button>
+      <button (click)="displayMobileFilter = !displayMobileFilter">
+        Filtres <img src="/icons/filters/filters-icon.svg" />
+      </button>
+      @if (displayMobileFilter) {
+        <app-catalog-filters></app-catalog-filters>
+      }
     </div>
     <!-- Desktop version of filters -->
     <div class="filters-section">

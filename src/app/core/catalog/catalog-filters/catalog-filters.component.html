@@ -1,5 +1,86 @@
 <div class="filters">
-  <p class="headtitle">Filtres</p>
+  <div class="headtitle">
+    <p>Filtres</p>
+    @if (hasActiveFilters) {
+      <button class="delete-filters-button" (click)="removeAllFilter()">
+        Tout retirer
+      </button>
+    }
+  </div>
+  <div class="filter-tags-section">
+    @if (selectedPrice !== 150) {
+      <button class="filter-tag-button" (click)="selectedPrice = 150">
+        <img src="/icons/filters/cross-icon.svg" />
+        {{ selectedPrice }}€
+      </button>
+    }
+    @if (!!selectedSerieId) {
+      <button class="filter-tag-button" (click)="selectedSerieId = null">
+        <img src="/icons/filters/cross-icon.svg" />
+        {{ selectedSerieName }}
+      </button>
+    }
+    @if (!!selectedGrade) {
+      <button class="filter-tag-button" (click)="selectedGrade = undefined">
+        <img src="/icons/filters/cross-icon.svg" />
+        <div style="display: flex">
+          {{ selectedGrade }}
+          <img src="/icons/stars/star-filled.svg" />
+        </div>
+      </button>
+    }
+    @if (selectedFormats.size > 0) {
+      @for (format of selectedFormats; track format) {
+        <button
+          class="filter-tag-button"
+          (click)="selectedFormats.delete(format)"
+        >
+          <img src="/icons/filters/cross-icon.svg" />
+          {{ format }}
+        </button>
+      }
+    }
+    @if (selectedGenres.size > 0) {
+      @for (genre of selectedGenres; track genre) {
+        <button
+          class="filter-tag-button"
+          (click)="selectedGenres.delete(genre)"
+        >
+          <img src="/icons/filters/cross-icon.svg" />
+          {{ genre }}
+        </button>
+      }
+    }
+    @if (selectedAudiences.size > 0) {
+      @for (audience of selectedAudiences; track audience) {
+        <button
+          class="filter-tag-button"
+          (click)="selectedAudiences.delete(audience)"
+        >
+          <img src="/icons/filters/cross-icon.svg" />
+          {{ audience }}
+        </button>
+      }
+    }
+    @if (!!selectedEditorId) {
+      <button class="filter-tag-button" (click)="selectedEditorId = null">
+        <img src="/icons/filters/cross-icon.svg" />
+        {{ selectedEditorName }}
+      </button>
+    }
+    @if (!!selectedAuthorId) {
+      <button class="filter-tag-button" (click)="selectedAuthorId = null">
+        <img src="/icons/filters/cross-icon.svg" />
+        {{ selectedAuthorName }}
+      </button>
+    }
+    @if (!!selectedIllustratorId) {
+      <button class="filter-tag-button" (click)="selectedIllustratorId = null">
+        <img src="/icons/filters/cross-icon.svg" />
+        {{ selectedIllustratorName }}
+      </button>
+    }
+  </div>
 
   @for (filterType of filterTypes; track filterType) {
     <div class="filter-container">
@@ -18,8 +99,8 @@
           @case (FilterTypeEnum.PRICE) {
             <ng-container [ngTemplateOutlet]="priceFilter"></ng-container>
           }
-          @case (FilterTypeEnum.COLLECTION) {
-            <ng-container [ngTemplateOutlet]="collectionFilter"></ng-container>
+          @case (FilterTypeEnum.SERIE) {
+            <ng-container [ngTemplateOutlet]="serieFilter"></ng-container>
           }
           @case (FilterTypeEnum.GRADE) {
             <ng-container [ngTemplateOutlet]="gradeFilter"></ng-container>
@@ -58,15 +139,25 @@
     </div>
   </ng-template>
 
-  <!-- Expanded collection filter -->
-  <ng-template #collectionFilter>
-    <div class="expanded-filter-container">Oui</div>
+  <!-- Expanded serie filter -->
+  <ng-template #serieFilter>
+    <div class="expanded-filter-container">
+      <p class="selector-label">Série</p>
+      <select [(ngModel)]="selectedSerieId">
+        <option [ngValue]="null" disabled selected hidden>
+          Sélectionner une série
+        </option>
+        <option *ngFor="let serie of series" [value]="serie.id">
+          {{ serie.name }}
+        </option>
+      </select>
+    </div>
   </ng-template>
 
   <!-- Expanded grade filter -->
   <ng-template #gradeFilter>
     <div class="expanded-filter-container">
-      @for (i of [0, 1, 2, 3, 4]; track i) {
+      @for (i of [5, 4, 3, 2, 1]; track i) {
         <div class="grade-row">
           <input
             type="radio"
@@ -83,21 +174,93 @@
 
   <!-- Expanded format filter -->
   <ng-template #formatFilter>
-    <div class="expanded-filter-container">Oui</div>
+    <div class="expanded-filter-container">
+      @for (format of bookFormats; track format) {
+        <div class="format-row">
+          <input
+            type="checkbox"
+            [checked]="selectedFormats.has(format)"
+            (click)="toggleFormat(format)"
+          />
+          {{ format }}
+        </div>
+      }
+    </div>
   </ng-template>
 
   <!-- Expanded genre filter -->
   <ng-template #genreFilter>
-    <div class="expanded-filter-container">Oui</div>
+    <div class="expanded-filter-container">
+      @for (genre of bookGenres; track genre) {
+        <div class="genre-row">
+          <input
+            type="checkbox"
+            [checked]="selectedGenres.has(genre)"
+            (click)="toggleGenre(genre)"
+          />
+          {{ genre }}
+        </div>
+      }
+    </div>
   </ng-template>
 
   <!-- Expanded audience filter -->
   <ng-template #audienceFilter>
-    <div class="expanded-filter-container">Oui</div>
+    <div class="expanded-filter-container">
+      @for (audience of bookAudiences; track audience) {
+        <div class="audience-row">
+          <input
+            type="checkbox"
+            [checked]="selectedAudiences.has(audience)"
+            (click)="toggleAudience(audience)"
+          />
+          {{ audience }}
+        </div>
+      }
+    </div>
   </ng-template>
 
   <!-- Expanded contributor filter -->
   <ng-template #contributorFilter>
-    <div class="expanded-filter-container">Oui</div>
+    <div class="expanded-filter-container">
+      <div class="selector">
+        <p class="selector-label">Editeur</p>
+        <select [(ngModel)]="selectedEditorId">
+          <option [ngValue]="null" disabled selected hidden>
+            Sélectionner un éditeur
+          </option>
+          <option *ngFor="let editor of editors" [value]="editor.id">
+            {{ editor.name }}
+          </option>
+        </select>
+      </div>
+
+      <div class="selector">
+        <p class="selector-label">Auteur</p>
+        <select [(ngModel)]="selectedAuthorId">
+          <option [ngValue]="null" disabled selected hidden>
+            Sélectionner un auteur
+          </option>
+          <option *ngFor="let author of authors" [value]="author.id">
+            {{ author.name }}
+          </option>
+        </select>
+      </div>
+
+      <div class="selector">
+        <p class="selector-label">Illustrateur</p>
+        <select [(ngModel)]="selectedIllustratorId">
+          <option [ngValue]="null" disabled selected hidden>
+            Sélectionner un illustrateur
+          </option>
+          <option
+            *ngFor="let illustrator of illustrators"
+            [value]="illustrator.id"
+          >
+            {{ illustrator.name }}
+          </option>
+        </select>
+      </div>
+    </div>
   </ng-template>
 </div>
