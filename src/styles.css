@@ -7,3 +7,39 @@ body {
   font-family: Roboto, Arial;
   margin: 0;
 }
+
+input[type="range"] {
+  accent-color: #4d75a3;
+}
+
+input[type="radio"] {
+  appearance: none;
+
+  outline: 1px solid gray;
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+
+  cursor: pointer;
+  transition: 0.2s all linear;
+}
+
+input[type="radio"]:checked {
+  background-color: white;
+  color: #4d75a3;
+  outline: 1px solid #4d75a3;
+  border: 3px solid #4d75a3;
+}
+
+input[type="checkbox"] {
+  accent-color: #4d75a3;
+  cursor: pointer;
+}
+
+select {
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
+  font-family: Roboto, Arial;
+  border: 1px gray solid;
+  color: #d86f6f;
+}

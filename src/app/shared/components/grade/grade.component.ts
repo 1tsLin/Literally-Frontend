@@ -8,7 +8,7 @@ import { Component, Input, OnChanges } from '@angular/core';
 })
 export class GradeComponent implements OnChanges {
   @Input() grade: number = 0;
-  @Input() totalReviews: number = 0;
+  @Input() totalReviews?: number = 0;
 
   starContent: string[] = ['empty', 'empty', 'empty', 'empty', 'empty'];
 

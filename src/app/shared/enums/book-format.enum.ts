@@ -1,0 +1,11 @@
+export enum BookFormatEnum {
+  NOVEL = 'NOVEL',
+  SHORT_STORY = 'SHORT_STORY',
+  POETRY = 'POETRY',
+  PLAY = 'PLAY',
+  COMIC = 'COMIC',
+  MANGA = 'MANGA',
+  MANHWA = 'MANHWA',
+  MANHUA = 'MANHUA',
+  GRAPHIC_NOVEL = 'GRAPHIC_NOVEL',
+}

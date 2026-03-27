@@ -1,0 +1,142 @@
+.filters {
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+}
+
+.headtitle {
+  color: #d86f6f;
+  font-weight: bold;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.delete-filters-button {
+  background-color: white;
+  border: none;
+  color: #4d75a3;
+  font-weight: bold;
+  cursor: pointer;
+
+  transition: text-decoration 0.15s;
+}
+
+.delete-filters-button:hover {
+  text-decoration: underline;
+}
+
+.filter-tags-section {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.filter-tag-button {
+  background-color: #cee1f8;
+  border: 1px #4d75a3 solid;
+  color: #4d75a3;
+  font-weight: bold;
+  border-radius: 20px;
+  padding: 5px 10px 5px 10px;
+  margin-bottom: 4px;
+  margin-right: 4px;
+  cursor: pointer;
+  transition:
+    color 0.15s,
+    background-color 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.filter-tag-button:hover {
+  color: white;
+  background-color: #4d75a3;
+}
+
+.filter-tag-button img {
+  height: 12px;
+  margin-right: 3px;
+}
+
+/*-- Individual filter --*/
+.filter-container {
+  border-bottom: 1px #ffd4d4 solid;
+  padding: 10px 0 10px 0;
+}
+
+.filter-container:last-child {
+  border-bottom: none;
+}
+
+.filter-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filter-title {
+  color: #d86f6f;
+  font-weight: 450;
+}
+
+.see-filter-button {
+  cursor: pointer;
+  border: none;
+  background-color: white;
+}
+
+/*-- Expanded filter --*/
+.expanded-filter-container {
+  padding: 10px;
+  margin-top: 10px;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-direction: column;
+}
+
+/*-- Price extanded filter --*/
+.price-range {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 15px;
+  color: #4d75a3;
+}
+
+.price-slider {
+  width: 100%;
+}
+
+/*-- Grade extanded filter --*/
+.grade-row {
+  display: flex;
+  font-size: 15px;
+  gap: 3px;
+  color: #d86f6f;
+}
+
+/*-- Format / Genre / Audience extanded filter --*/
+.format-row,
+.genre-row,
+.audience-row {
+  font-size: 15px;
+  color: #d86f6f;
+}
+
+/*-- Serie / Contributor extanded filter --*/
+.selector {
+  margin-bottom: 10px;
+}
+
+.selector:last-child {
+  margin-bottom: 0;
+}
+
+.selector-label {
+  font-size: 15px;
+  color: #d86f6f;
+  margin-bottom: 2px;
+}
