@@ -9,6 +9,46 @@
     [(isOpen)]="isGeneralInfoOpen"
   ></app-section-header>
   @if (isGeneralInfoOpen) {
-    <div class="general-info-section">test</div>
+    <div class="general-info-section">
+      <div>
+        <p class="input-label">1ère de couverture</p>
+        <label class="image-placeholder" for="coverImage">
+          <img [src]="coverImageUrl" class="preview" />
+        </label>
+
+        <input
+          type="file"
+          id="coverImage"
+          accept="image/png, image/jpeg"
+          style="display: none"
+          (change)="onFileChange($event, true)"
+        />
+      </div>
+      <div>
+        <p class="input-label">4eme de couverture</p>
+        <label class="image-placeholder" for="backImage">
+          <img [src]="backImageUrl" class="preview" />
+        </label>
+
+        <input
+          type="file"
+          id="backImage"
+          accept="image/png, image/jpeg"
+          style="display: none"
+          (change)="onFileChange($event, false)"
+        />
+      </div>
+      <div>
+        <p class="input-label">Série</p>
+        <select [(ngModel)]="selectedSerieId">
+          <option [ngValue]="null" disabled selected hidden>
+            Sélectionner une série
+          </option>
+          <option *ngFor="let serie of series" [value]="serie.id">
+            {{ serie.name }}
+          </option>
+        </select>
+      </div>
+    </div>
   }
 </div>

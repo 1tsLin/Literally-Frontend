@@ -1,5 +1,11 @@
 .page-content {
-  padding: 20px 200px 20px 200px;
+  padding: 20px 20% 20px 20%;
+}
+
+.input-label {
+  color: #d86f6f;
+  font-size: 14px;
+  margin-bottom: 7px;
 }
 
 /*-- Hero section --*/
@@ -26,7 +32,19 @@
 .general-info-section {
   height: 400px;
   background-color: lightblue;
-  margin: 10px 30px 10px 30px;
+  margin: 10px 10% 10px 10%;
+  display: flex;
+  gap: 20px;
+}
+
+.image-placeholder {
+  cursor: pointer;
+}
+
+.preview {
+  width: 200px;
+  height: 275px;
+  object-fit: cover;
 }
 
 /*-- Responsive Mobile --*/
