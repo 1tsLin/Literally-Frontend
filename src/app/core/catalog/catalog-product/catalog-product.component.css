@@ -82,23 +82,10 @@
   border-radius: 20px;
   cursor: pointer;
   font-weight: 550;
-
-  transition:
-    box-shadow 0.15s,
-    background-color 0.15s,
-    color 0.15s,
-    border 0.15s;
-}
-
-.add-cart-button:hover {
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .add-cart-button:active {
-  background-color: white;
-  color: #d86f6f;
-  border: 1px #d86f6f solid;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #b05b5b;
 }
 
 /*-- Responsive Mobile --*/

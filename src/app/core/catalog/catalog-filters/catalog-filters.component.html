@@ -143,10 +143,11 @@
   <ng-template #serieFilter>
     <div class="expanded-filter-container">
       <p class="selector-label">Série</p>
-      <select [(ngModel)]="selectedSerieId">
-        <option [ngValue]="null" disabled selected hidden>
-          Sélectionner une série
-        </option>
+      <select
+        [(ngModel)]="selectedSerieId"
+        [class.placeholder]="selectedSerieId === null"
+      >
+        <option [ngValue]="null" disabled hidden>Sélectionner une série</option>
         <option *ngFor="let serie of series" [value]="serie.id">
           {{ serie.name }}
         </option>
@@ -225,8 +226,11 @@
     <div class="expanded-filter-container">
       <div class="selector">
         <p class="selector-label">Editeur</p>
-        <select [(ngModel)]="selectedEditorId">
-          <option [ngValue]="null" disabled selected hidden>
+        <select
+          [(ngModel)]="selectedEditorId"
+          [class.placeholder]="selectedEditorId === null"
+        >
+          <option [ngValue]="null" disabled hidden>
             Sélectionner un éditeur
           </option>
           <option *ngFor="let editor of editors" [value]="editor.id">
@@ -237,8 +241,11 @@
 
       <div class="selector">
         <p class="selector-label">Auteur</p>
-        <select [(ngModel)]="selectedAuthorId">
-          <option [ngValue]="null" disabled selected hidden>
+        <select
+          [(ngModel)]="selectedAuthorId"
+          [class.placeholder]="selectedAuthorId === null"
+        >
+          <option [ngValue]="null" disabled hidden>
             Sélectionner un auteur
           </option>
           <option *ngFor="let author of authors" [value]="author.id">
@@ -249,8 +256,11 @@
 
       <div class="selector">
         <p class="selector-label">Illustrateur</p>
-        <select [(ngModel)]="selectedIllustratorId">
-          <option [ngValue]="null" disabled selected hidden>
+        <select
+          [(ngModel)]="selectedIllustratorId"
+          [class.placeholder]="selectedIllustratorId === null"
+        >
+          <option [ngValue]="null" disabled hidden>
             Sélectionner un illustrateur
           </option>
           <option

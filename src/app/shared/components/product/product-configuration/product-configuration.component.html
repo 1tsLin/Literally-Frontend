@@ -3,14 +3,15 @@
     <p class="title">Configuration de produit</p>
     <p class="subtitle">{{ heroTitle }}</p>
   </div>
+
   <!-- Book general info section -->
   <app-section-header
     title="Généralités"
     [(isOpen)]="isGeneralInfoOpen"
   ></app-section-header>
   @if (isGeneralInfoOpen) {
-    <div class="general-info-section">
-      <div>
+    <div class="displayed-section">
+      <div class="input">
         <p class="input-label">1ère de couverture</p>
         <label class="image-placeholder" for="coverImage">
           <img [src]="coverImageUrl" class="preview" />
@@ -24,7 +25,7 @@
           (change)="onFileChange($event, true)"
         />
       </div>
-      <div>
+      <div class="input">
         <p class="input-label">4eme de couverture</p>
         <label class="image-placeholder" for="backImage">
           <img [src]="backImageUrl" class="preview" />
@@ -38,17 +39,258 @@
           (change)="onFileChange($event, false)"
         />
       </div>
-      <div>
-        <p class="input-label">Série</p>
-        <select [(ngModel)]="selectedSerieId">
-          <option [ngValue]="null" disabled selected hidden>
-            Sélectionner une série
+      <div style="flex: 1">
+        <div class="input">
+          <p class="input-label">Série</p>
+          <select
+            [(ngModel)]="selectedSerieId"
+            [class.placeholder]="selectedSerieId === null"
+          >
+            <option [ngValue]="null" disabled hidden>
+              Sélectionner une série
+            </option>
+            <option *ngFor="let serie of series" [value]="serie.id">
+              {{ serie.name }}
+            </option>
+          </select>
+        </div>
+        <div class="input">
+          <p class="input-label">Alias</p>
+          <textarea
+            type="text"
+            placeholder="Alias séparés par des ;"
+            [(ngModel)]="aliases"
+            rows="5"
+          ></textarea>
+        </div>
+        <div style="display: flex; gap: 10px">
+          <div class="input" style="flex: 1">
+            <p class="input-label">Prix</p>
+            <input
+              type="number"
+              placeholder="0.00"
+              min="0"
+              [(ngModel)]="price"
+            />
+          </div>
+          <div class="input" style="flex: 1">
+            <p class="input-label">Quantité</p>
+            <input
+              type="number"
+              placeholder="0"
+              min="0"
+              [(ngModel)]="quantity"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- Book category -->
+  <app-section-header
+    title="Catégorie"
+    [(isOpen)]="isCategoryOpen"
+  ></app-section-header>
+  @if (isCategoryOpen) {
+    <div class="displayed-section">
+      <div class="input" style="flex: 1">
+        <p class="input-label">Format</p>
+        <select
+          [(ngModel)]="selectedFormat"
+          [class.placeholder]="selectedFormat === null"
+        >
+          <option [ngValue]="null" disabled hidden>
+            Sélectionner un format
           </option>
-          <option *ngFor="let serie of series" [value]="serie.id">
-            {{ serie.name }}
+          <option *ngFor="let format of bookFormats" [value]="format">
+            {{ format }}
+          </option>
+        </select>
+      </div>
+      <div class="input" style="flex: 1">
+        <p class="input-label">Audience</p>
+        <select
+          [(ngModel)]="selectedAudience"
+          [class.placeholder]="selectedAudience === null"
+        >
+          <option [ngValue]="null" disabled hidden>
+            Sélectionner une audience
+          </option>
+          <option *ngFor="let audience of bookAudiences" [value]="audience">
+            {{ audience }}
+          </option>
+        </select>
+      </div>
+      <div class="input" style="flex: 1">
+        <p class="input-label">Genres</p>
+        <div class="multi-selector">
+          <button
+            class="multi-selector-button"
+            (click)="isGenresSelectorOpen = !isGenresSelectorOpen"
+          >
+            @if (selectedGenres.length === 0) {
+              <div style="color: #898a9c">Sélectionner des genres</div>
+            } @else {
+              <div style="color: #d86f6f">{{ selectedGenresNames }}</div>
+            }
+            <img src="/icons/dropdown-icon.svg" />
+          </button>
+          @if (isGenresSelectorOpen) {
+            <div class="multi-selector-dropdown">
+              @for (genre of bookGenres; track genre) {
+                <div class="genre-row">
+                  {{ genre }}
+                  <input
+                    type="checkbox"
+                    [checked]="selectedGenres.includes(genre)"
+                    (click)="toggleGenre(genre)"
+                  />
+                </div>
+              }
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- Contributors -->
+  <app-section-header
+    title="Contributeurs"
+    [(isOpen)]="isContributorsOpen"
+  ></app-section-header>
+  @if (isContributorsOpen) {
+    <div class="displayed-section">
+      <div class="input" style="flex: 1">
+        <p class="input-label">Auteur</p>
+        <select
+          [(ngModel)]="selectedAuthorId"
+          [class.placeholder]="selectedAuthorId === null"
+        >
+          <option [ngValue]="null" disabled hidden>
+            Sélectionner un auteur
+          </option>
+          <option *ngFor="let author of authors" [value]="author.id">
+            {{ author.name }}
+          </option>
+        </select>
+      </div>
+      <div class="input" style="flex: 1">
+        <p class="input-label">Illustrateur</p>
+        <select
+          [(ngModel)]="selectedIllustratorId"
+          [class.placeholder]="selectedIllustratorId === null"
+        >
+          <option [ngValue]="null" disabled hidden>
+            Sélectionner un illustrateur
+          </option>
+          <option
+            *ngFor="let illustrator of illustrators"
+            [value]="illustrator.id"
+          >
+            {{ illustrator.name }}
+          </option>
+        </select>
+      </div>
+      <div class="input" style="flex: 1">
+        <p class="input-label">Editeur</p>
+        <select
+          [(ngModel)]="selectedEditorId"
+          [class.placeholder]="selectedEditorId === null"
+        >
+          <option [ngValue]="null" disabled hidden>
+            Sélectionner un éditeur
+          </option>
+          <option *ngFor="let editor of editors" [value]="editor.id">
+            {{ editor.name }}
           </option>
         </select>
       </div>
     </div>
   }
+
+  <!-- Details -->
+  <app-section-header
+    title="Détails techniques"
+    [(isOpen)]="isDetailsOpen"
+  ></app-section-header>
+  @if (isDetailsOpen) {
+    <div class="displayed-section">
+      <div class="input" style="flex: 1">
+        <p class="input-label">EAN</p>
+        <input type="number" placeholder="978020137962" [(ngModel)]="ean" />
+      </div>
+      <div class="input" style="flex: 1">
+        <p class="input-label">Nombre de pages</p>
+        <input type="number" placeholder="0" [(ngModel)]="pages" />
+      </div>
+      <div class="input" style="flex: 1">
+        <p class="input-label">Date de publication</p>
+        <input
+          type="date"
+          placeholder="jj/mm/aaaa"
+          [(ngModel)]="publicationDate"
+          [class.placeholder]="!publicationDate"
+        />
+      </div>
+    </div>
+    <div class="displayed-section">
+      <div class="input" style="flex: 1">
+        <p class="input-label">Hauteur</p>
+        <input type="number" placeholder="0" [(ngModel)]="height" />
+      </div>
+      <div class="input" style="flex: 1">
+        <p class="input-label">Longueur</p>
+        <input type="number" placeholder="0" [(ngModel)]="width" />
+      </div>
+      <div class="input" style="flex: 1">
+        <p class="input-label">Poids</p>
+        <input type="number" placeholder="0.000" [(ngModel)]="weight" />
+      </div>
+    </div>
+  }
+
+  <!-- Localizations -->
+  <app-section-header title="Langages" [(isOpen)]="isLocalizationsOpen">
+  </app-section-header>
+  @if (isLocalizationsOpen) {
+    <div class="displayed-section">
+      <div style="flex: 1">
+        <div class="languages-tab">
+          @for (language of languages; track language) {
+            <div class="language">
+              <button
+                (click)="onLanguageToggle(language)"
+                [class.active]="selectedLanguageTab === language"
+              >
+                {{ language }}
+              </button>
+            </div>
+          }
+        </div>
+        <div class="input">
+          <p class="input-label">Titre</p>
+          <input
+            type="text"
+            [(ngModel)]="currentLocalization.name"
+            placeholder="Titre de l'oeuvre"
+          />
+        </div>
+        <div class="input">
+          <p class="input-label">Description</p>
+          <textarea
+            [(ngModel)]="currentLocalization.description"
+            placeholder="Description de l'oeuvre"
+            rows="6"
+          ></textarea>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- Button -->
+  <div class="buttons-section">
+    <button class="save-button">Enregistrer</button>
+  </div>
 </div>

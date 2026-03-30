@@ -129,6 +129,7 @@
 /*-- Serie / Contributor extanded filter --*/
 .selector {
   margin-bottom: 10px;
+  width: 100%;
 }
 
 .selector:last-child {
@@ -139,4 +140,8 @@
   font-size: 15px;
   color: #d86f6f;
   margin-bottom: 2px;
+}
+
+select {
+  width: 100%;
 }

@@ -8,6 +8,7 @@
   font-weight: bold;
   color: #d86f6f;
   font-size: 16px;
+  white-space: nowrap;
 }
 
 .line {
