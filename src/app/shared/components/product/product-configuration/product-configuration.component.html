@@ -171,7 +171,7 @@
           <option [ngValue]="null" disabled hidden>
             Sélectionner un auteur
           </option>
-          <option *ngFor="let author of authors" [value]="author.id">
+          <option *ngFor="let author of authors$ | async" [value]="author.id">
             {{ author.name }}
           </option>
         </select>
@@ -186,7 +186,7 @@
             Sélectionner un illustrateur
           </option>
           <option
-            *ngFor="let illustrator of illustrators"
+            *ngFor="let illustrator of illustrators$ | async"
             [value]="illustrator.id"
           >
             {{ illustrator.name }}
@@ -202,7 +202,7 @@
           <option [ngValue]="null" disabled hidden>
             Sélectionner un éditeur
           </option>
-          <option *ngFor="let editor of editors" [value]="editor.id">
+          <option *ngFor="let editor of editors$ | async" [value]="editor.id">
             {{ editor.name }}
           </option>
         </select>
@@ -238,15 +238,15 @@
     <div class="displayed-section">
       <div class="input" style="flex: 1">
         <p class="input-label">Hauteur</p>
-        <input type="number" placeholder="0" [(ngModel)]="height" />
+        <input type="number" placeholder="0" min="0" [(ngModel)]="height" />
       </div>
       <div class="input" style="flex: 1">
         <p class="input-label">Longueur</p>
-        <input type="number" placeholder="0" [(ngModel)]="width" />
+        <input type="number" placeholder="0" min="0" [(ngModel)]="width" />
       </div>
       <div class="input" style="flex: 1">
         <p class="input-label">Poids</p>
-        <input type="number" placeholder="0.000" [(ngModel)]="weight" />
+        <input type="number" placeholder="0.000" min="0" [(ngModel)]="weight" />
       </div>
     </div>
   }
@@ -291,6 +291,6 @@
 
   <!-- Button -->
   <div class="buttons-section">
-    <button class="save-button">Enregistrer</button>
+    <button class="save-button" (click)="submit()">Enregistrer</button>
   </div>
 </div>
