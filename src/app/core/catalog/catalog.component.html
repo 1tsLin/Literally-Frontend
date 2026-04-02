@@ -1,14 +1,14 @@
-<!--
-<button [routerLink]="['/products/configuration']" [queryParams]="{ id: null }">
-  Rechercher
-</button>
--->
-
 <div class="page-content">
   <!-- Admin section -->
   @if (isAdmin) {
     <div class="admin-section">
-      <button class="create-product-button">Créer un produit</button>
+      <button
+        class="create-product-button"
+        [routerLink]="['/products/configuration']"
+        [queryParams]="{ id: null }"
+      >
+        Créer un produit
+      </button>
     </div>
   }
   <div class="catalog-section">

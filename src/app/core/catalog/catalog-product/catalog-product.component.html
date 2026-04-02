@@ -4,7 +4,10 @@
   </div>
   <div class="book-content">
     <div class="favorite-button-row">
-      <button class="add-favorite-button">
+      <button
+        class="add-favorite-button"
+        (click)="product.isFavorite = !product.isFavorite"
+      >
         @if (product.isFavorite) {
           <img src="/icons/added-favorite.svg" />
         } @else {

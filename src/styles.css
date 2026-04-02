@@ -3,6 +3,10 @@ p {
   margin: 0;
 }
 
+header {
+  z-index: 100;
+}
+
 body {
   font-family: Roboto, Arial;
   margin: 0;
@@ -37,9 +41,79 @@ input[type="checkbox"] {
 }
 
 select {
-  padding: 5px 10px 5px 10px;
+  padding: 12px 10px 12px 10px;
   border-radius: 5px;
   font-family: Roboto, Arial;
+  font-size: 15px;
   border: 1px gray solid;
   color: #d86f6f;
+  border: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  outline: none;
+  cursor: pointer;
+}
+
+select.placeholder {
+  color: #898a9c;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"] {
+  padding: 12px 0 12px 15px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  cursor: text;
+  box-sizing: border-box;
+  color: #d86f6f;
+  font-size: 15px;
+  font-family: Roboto, Arial;
+  outline: none;
+}
+
+input[type="date"].placeholder {
+  color: #d9d9d9;
+}
+
+input[type="text"]::placeholder,
+input[type="number"]::placeholder {
+  color: #d9d9d9;
+}
+
+textarea {
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  padding: 12px 0 12px 15px;
+  font-size: 15px;
+  font-family: Roboto, Arial;
+  cursor: text;
+  box-sizing: border-box;
+  color: #d86f6f;
+}
+
+textarea::placeholder {
+  color: #d9d9d9;
+}
+
+textarea:focus {
+  outline: none;
+}
+
+button {
+  cursor: pointer;
+  transition:
+    box-shadow 0.15s,
+    background-color 0.15s,
+    color 0.15s,
+    border 0.15s;
+}
+
+button:active:not(:has(img)) {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+button:hover:not(:has(img)) {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }

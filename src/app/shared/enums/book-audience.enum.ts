@@ -1,5 +1,5 @@
 export enum BookAudienceEnum {
-  CHILDREN = 'CHILDRIEN',
+  CHILDREN = 'CHILDREN',
   TEEN = 'TEEN',
   ADULT = 'ADULT',
   SHONEN = 'SHONEN',

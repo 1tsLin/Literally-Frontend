@@ -81,12 +81,11 @@
   font-size: 15px;
   border-radius: 20px;
   cursor: pointer;
-
-  transition: box-shadow 0.1s;
+  font-weight: 550;
 }
 
 .add-cart-button:active {
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  background-color: #b05b5b;
 }
 
 /*-- Responsive Mobile --*/

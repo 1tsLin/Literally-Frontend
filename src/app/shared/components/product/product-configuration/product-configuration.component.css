@@ -1,0 +1,184 @@
+.page-content {
+  padding: 20px 20% 20px 20%;
+}
+
+.input-label {
+  color: #d86f6f;
+  font-size: 14px;
+  margin-bottom: 7px;
+}
+
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 100%;
+}
+
+textarea {
+  width: 100%;
+}
+
+.input {
+  margin-bottom: 10px;
+}
+
+.displayed-section {
+  margin: 10px 10% 10px 10%;
+  display: flex;
+  gap: 20px;
+}
+
+/*-- Hero section --*/
+.hero-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.hero-section .title {
+  font-size: 32px;
+  font-weight: bold;
+  color: #be7339;
+}
+
+.hero-section .subtitle {
+  color: #be7339;
+  font-size: 24px;
+}
+
+/*-- General info section --*/
+
+.image-placeholder {
+  cursor: pointer;
+}
+
+.preview {
+  width: 200px;
+  height: 275px;
+  object-fit: cover;
+}
+
+/*-- Category --*/
+.multi-selector {
+  position: relative;
+}
+
+.multi-selector-button {
+  height: 40px;
+  background-color: white;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  text-align: left;
+  padding-left: 15px;
+  font-size: 15px;
+  font-family: Roboto, Arial;
+  border-radius: 5px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.multi-selector-button img {
+  width: 9px;
+}
+
+.multi-selector-dropdown {
+  position: absolute;
+  width: 100%;
+  background-color: white;
+  border: 1px black solid;
+}
+
+.genre-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+  color: #d86f6f;
+  padding: 5px 10px 5px 10px;
+}
+
+.genre-row input {
+  width: fit-content;
+}
+
+/*-- Localizations tab --*/
+.languages-tab {
+  background-color: #fff4f4;
+  border: none;
+  border-radius: 10px;
+  display: flex;
+  margin-bottom: 20px;
+  width: fit-content;
+}
+
+.language {
+  padding: 5px;
+}
+
+.language button {
+  padding: 10px 15px 10px 15px;
+  border-radius: 10px;
+  background-color: #fff4f4;
+  border: none;
+  color: #d86f6f;
+  font-size: 15px;
+  font-family: Roboto, Arial;
+
+  transition: background-color 0.15s;
+}
+
+.language button.active {
+  background-color: #ffd4d4;
+}
+
+.language button:hover {
+  box-shadow: none;
+}
+
+.language button:active {
+  box-shadow: none;
+}
+
+/*-- Buttons section --*/
+.buttons-section {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.save-button {
+  background-color: #90baeb;
+  color: white;
+  font-weight: bold;
+  border-radius: 10px;
+  font-size: 15px;
+  padding: 15px 30px 15px 30px;
+  border: none;
+}
+
+.save-button:active {
+  background-color: #6e93bd;
+}
+
+/*-- Responsive Mobile --*/
+@media (max-width: 912px) {
+  .page-content {
+    padding: 10px;
+  }
+}
+
+@media (min-width: 913px) and (max-width: 1365px) {
+  .page-content {
+    padding: 10px 50px 10px 50px;
+  }
+}

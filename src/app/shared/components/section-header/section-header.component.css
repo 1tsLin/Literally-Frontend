@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.title {
+  font-weight: bold;
+  color: #d86f6f;
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+.line {
+  background-color: #ffa3a3;
+  height: 1px;
+  width: 100%;
+  border: 0;
+  font-size: 0;
+}
+
+.button {
+  background-color: #fefbf6;
+  border: none;
+  cursor: pointer;
+  padding-right: 0;
+}
+
+.button img {
+  margin-left: auto;
+}
