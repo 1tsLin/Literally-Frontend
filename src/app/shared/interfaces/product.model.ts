@@ -1,6 +1,7 @@
 import { BookAudienceEnum } from '../enums/book-audience.enum';
 import { BookFormatEnum } from '../enums/book-format.enum';
 import { BookGenreEnum } from '../enums/book-genre.enum';
+import { Media } from './media.model';
 import { ProductLocalization } from './product-localization.model';
 
 export interface Product {
@@ -29,4 +30,5 @@ export interface Product {
   weight?: number;
 
   localizations: ProductLocalization[];
+  medias?: Media[];
 }

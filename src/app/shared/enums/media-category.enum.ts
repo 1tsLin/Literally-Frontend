@@ -1,0 +1,6 @@
+export enum MediaCategoryEnum {
+  REVIEW = 'REVIEW',
+  PRODUCT_COVER = 'PRODUCT_COVER',
+  PRODUCT_BACK = 'PRODUCT_BACK',
+  SERIES = 'SERIES',
+}

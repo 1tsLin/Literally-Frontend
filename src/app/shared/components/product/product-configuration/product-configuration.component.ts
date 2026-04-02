@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {
   ReactiveFormsModule,
@@ -19,6 +19,9 @@ import { Product } from '../../../interfaces/product.model';
 import { ContributorService } from '../../../services/contributor.service';
 import { ContributorCategoryEnum } from '../../../enums/contributor-category.enum';
 import { ProductService } from '../../../services/product.service';
+import { Media } from '../../../interfaces/media.model';
+import { MediaCategoryEnum } from '../../../enums/media-category.enum';
+import { MediaService } from '../../../services/media.service';
 
 @Component({
   selector: 'app-product-configuration',
@@ -45,6 +48,8 @@ export class ProductConfigurationComponent {
   private sanitizer = inject(DomSanitizer);
   private contributorService = inject(ContributorService);
   private productService = inject(ProductService);
+  private mediaService = inject(MediaService);
+  private cdr = inject(ChangeDetectorRef);
 
   editors$ = this.contributorService.getContributors(
     ContributorCategoryEnum.EDITOR,
@@ -71,6 +76,20 @@ export class ProductConfigurationComponent {
   coverImageFile?: File;
   backImageUrl: SafeUrl | string = '/image-placeholder.svg';
   backImageFile?: File;
+
+  medias: Media[] = [
+    {
+      id: undefined,
+      entityId: undefined,
+      category: MediaCategoryEnum.PRODUCT_COVER,
+    },
+    {
+      id: undefined,
+      entityId: undefined,
+      category: MediaCategoryEnum.PRODUCT_BACK,
+    },
+  ];
+
   selectedSerieId: string | null = null;
   aliases?: string;
   price!: number;
@@ -90,7 +109,7 @@ export class ProductConfigurationComponent {
   /*-- Details --*/
   ean?: number;
   pages?: number;
-  publicationDate?: Date;
+  publishingDate?: string;
   height?: number;
   width?: number;
   weight?: number;
@@ -103,14 +122,54 @@ export class ProductConfigurationComponent {
   ];
 
   ngOnInit() {
-    this.id = this.route.snapshot.queryParamMap.get('id') ?? undefined;
+    this.id = this.route.snapshot.paramMap.get('id') ?? undefined;
 
     if (this.id) {
       // UPDATE
       this.heroTitle = '(id n° ' + this.id + ')';
-    } else {
-      // CREATE
+      this.initProduct();
     }
+  }
+
+  initProduct() {
+    this.productService.getProduct(this.id!).subscribe({
+      next: (product) => {
+        //this.selectedSerieId = product.serieId ?? null;
+        this.aliases = product.alias?.join('; ') ?? '';
+        this.selectedFormat = product.format;
+        this.selectedAudience = product.audience;
+        this.selectedGenres = product.genres ?? [];
+        this.price = product.price;
+        this.quantity = product.quantity;
+        this.selectedAuthorId = product.authorId ?? null;
+        this.selectedEditorId = product.editorId ?? null;
+        this.selectedIllustratorId = product.illustratorId ?? null;
+        this.ean = product.ean;
+        this.pages = product.pages;
+        this.publishingDate = product.publishingDate
+          ? new Date(product.publishingDate).toISOString().split('T')[0]
+          : undefined;
+        this.height = product.height;
+        this.width = product.width;
+        this.weight = product.weight;
+        if (product.localizations) {
+          this.localizations = product.localizations;
+        }
+        if (product.medias && product.medias.length > 0) {
+          this.medias = product.medias;
+          this.medias.forEach((media) => {
+            if (media.category == MediaCategoryEnum.PRODUCT_COVER)
+              this.coverImageUrl = this.mediaService.getMediaUrl(media.id!);
+            if (media.category == MediaCategoryEnum.PRODUCT_BACK)
+              this.backImageUrl = this.mediaService.getMediaUrl(media.id!);
+          });
+        }
+        this.cdr.detectChanges();
+      },
+      error: (err) => {
+        console.error('Error loading product', err);
+      },
+    });
   }
 
   onFileChange(event: Event, isCover: boolean): void {
@@ -174,7 +233,9 @@ export class ProductConfigurationComponent {
 
       ean: this.ean,
       pages: this.pages,
-      publishingDate: this.publicationDate,
+      publishingDate: this.publishingDate
+        ? new Date(this.publishingDate)
+        : undefined,
 
       height: this.height,
       width: this.width,
@@ -182,12 +243,41 @@ export class ProductConfigurationComponent {
 
       localizations: this.localizations,
     };
-    console.log('test');
-    this.productService
-      .createProduct(this.product, this.coverImageFile, this.backImageFile)
-      .subscribe({
+
+    if (this.id) {
+      this.productService.updateProduct(this.id, this.product).subscribe({
         next: (res) => console.log('OK', res),
-        error: (err) => console.error('Erreur', err),
+        error: (err) => console.error('Error updating product', err),
       });
+
+      this.handleMedia(this.coverImageFile, MediaCategoryEnum.PRODUCT_COVER);
+      this.handleMedia(this.backImageFile, MediaCategoryEnum.PRODUCT_BACK);
+    } else {
+      this.productService
+        .createProduct(this.product, this.coverImageFile, this.backImageFile)
+        .subscribe({
+          next: (res) => console.log('OK', res),
+          error: (err) => console.error('Error creating product', err),
+        });
+    }
+  }
+
+  private handleMedia(file: File | undefined, category: MediaCategoryEnum) {
+    if (!file) return;
+
+    const media = this.medias.find((m) => m.category === category);
+    if (!media) return;
+
+    if (media.id) {
+      this.mediaService.updateMedia(media.id, media, file).subscribe({
+        next: (res) => console.log('OK', res),
+        error: (err) => console.error('Error updating media', err),
+      });
+    } else {
+      this.mediaService.createMedia(media, file).subscribe({
+        next: (res) => console.log('OK', res),
+        error: (err) => console.error('Error creating media', err),
+      });
+    }
   }
 }

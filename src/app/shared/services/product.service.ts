@@ -1,8 +1,6 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { ContributorCategoryEnum } from '../enums/contributor-category.enum';
-import { Contributor } from '../interfaces/contributor.model';
 import { Observable } from 'rxjs';
 import { Product } from '../interfaces/product.model';
 
@@ -30,23 +28,17 @@ export class ProductService {
       formData.append('backImage', backImage);
     }
 
-    formData.forEach((value, key) => {
-      console.log(key, value);
-    });
-    console.log(this.apiUrl);
     return this.http.post<Product>(`${this.apiUrl}/products`, formData);
   }
 
-  getContributors(
-    category?: ContributorCategoryEnum,
-  ): Observable<Contributor[]> {
-    let params = new HttpParams();
+  updateProduct(productId: string, product: Product) {
+    return this.http.put<Product>(
+      `${this.apiUrl}/products/${productId}`,
+      product,
+    );
+  }
 
-    if (category) {
-      params = params.set('category', category);
-    }
-    return this.http.get<Contributor[]>(`${this.apiUrl}/contributors`, {
-      params,
-    });
+  getProduct(productId: string): Observable<Product> {
+    return this.http.get<Product>(`${this.apiUrl}/products/${productId}`);
   }
 }
