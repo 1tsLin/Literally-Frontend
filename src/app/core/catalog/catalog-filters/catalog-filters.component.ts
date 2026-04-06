@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { FilterTypeEnum } from '../../../shared/enums/filter-type.enum';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -12,6 +12,11 @@ import {
   illustrators,
   series,
 } from '../../../shared/dummy-data';
+import { CatalogFilter } from '../../../shared/interfaces/catalog-filter.model';
+import { ProductService } from '../../../shared/services/product.service';
+import { ContributorService } from '../../../shared/services/contributor.service';
+import { ContributorCategoryEnum } from '../../../shared/enums/contributor-category.enum';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-catalog-filters',
@@ -20,7 +25,12 @@ import {
   styleUrl: './catalog-filters.component.css',
 })
 export class CatalogFiltersComponent {
+  @Input() filters?: CatalogFilter;
+  @Output() filtersChange = new EventEmitter<Partial<CatalogFilter>>();
+
   readonly FilterTypeEnum = FilterTypeEnum;
+
+  private contributorService = inject(ContributorService);
 
   filterState: Record<FilterTypeEnum, boolean> = {
     [FilterTypeEnum.PRICE]: false,
@@ -36,84 +46,103 @@ export class CatalogFiltersComponent {
   bookGenres = Object.values(BookGenreEnum);
   bookAudiences = Object.values(BookAudienceEnum);
   series = series;
-  editors = editors;
-  authors = authors;
-  illustrators = illustrators;
+  editors$ = this.contributorService.getContributors(
+    ContributorCategoryEnum.EDITOR,
+  );
+  authors$ = this.contributorService.getContributors(
+    ContributorCategoryEnum.AUTHOR,
+  );
+  illustrators$ = this.contributorService.getContributors(
+    ContributorCategoryEnum.ILLUSTRATOR,
+  );
 
   /*-- Filters values --*/
-  selectedPrice = 150;
-  selectedSerieId: string | null = null;
-  selectedGrade?: number;
-  selectedFormats = new Set<BookFormatEnum>();
-  selectedGenres = new Set<BookGenreEnum>();
-  selectedAudiences = new Set<BookAudienceEnum>();
-  selectedEditorId: string | null = null;
-  selectedAuthorId: string | null = null;
-  selectedIllustratorId: string | null = null;
+  selectedFormats: BookFormatEnum[] = [];
+  selectedGenres: BookGenreEnum[] = [];
+  selectedAudiences: BookAudienceEnum[] = [];
 
-  /*-- Update filters values methods --*/
+  /*-- Update UI display --*/
   updateFilterUI(type: FilterTypeEnum) {
     this.filterState[type] = !this.filterState[type];
   }
 
+  /*-- Update filters values methods --*/
   toggleFormat(format: BookFormatEnum) {
-    this.selectedFormats.has(format)
-      ? this.selectedFormats.delete(format)
-      : this.selectedFormats.add(format);
+    this.selectedFormats = this.selectedFormats.includes(format)
+      ? this.selectedFormats.filter((f) => f !== format)
+      : [...this.selectedFormats, format];
+    this.filtersChange.emit({ formats: this.selectedFormats });
   }
 
   toggleGenre(genre: BookGenreEnum) {
-    this.selectedGenres.has(genre)
-      ? this.selectedGenres.delete(genre)
-      : this.selectedGenres.add(genre);
+    this.selectedGenres = this.selectedGenres.includes(genre)
+      ? this.selectedGenres.filter((f) => f !== genre)
+      : [...this.selectedGenres, genre];
+    this.filtersChange.emit({ genres: this.selectedGenres });
   }
 
   toggleAudience(audience: BookAudienceEnum) {
-    this.selectedAudiences.has(audience)
-      ? this.selectedAudiences.delete(audience)
-      : this.selectedAudiences.add(audience);
+    this.selectedAudiences = this.selectedAudiences.includes(audience)
+      ? this.selectedAudiences.filter((f) => f !== audience)
+      : [...this.selectedAudiences, audience];
+    this.filtersChange.emit({ audiences: this.selectedAudiences });
   }
 
+  /*-- Reset every filters --*/
   removeAllFilter() {
-    this.selectedPrice = 150;
-    this.selectedSerieId = null;
-    this.selectedGrade = undefined;
-    this.selectedFormats.clear();
-    this.selectedGenres.clear();
-    this.selectedAudiences.clear();
-    this.selectedEditorId = null;
-    this.selectedAuthorId = null;
-    this.selectedIllustratorId = null;
+    this.selectedFormats = [];
+    this.selectedGenres = [];
+    this.selectedAudiences = [];
+    this.filtersChange.emit({
+      title: undefined,
+      price: 150,
+      grade: undefined,
+      isFavorite: undefined,
+      seriesId: undefined,
+      authorId: undefined,
+      illustratorId: undefined,
+      editorId: undefined,
+      formats: undefined,
+      audiences: undefined,
+      genres: undefined,
+    });
   }
 
+  /*-- Get filters displayed value --*/
   get hasActiveFilters(): boolean {
     return (
-      this.selectedPrice !== 150 ||
-      this.selectedSerieId !== null ||
-      this.selectedGrade !== undefined ||
-      this.selectedFormats.size > 0 ||
-      this.selectedGenres.size > 0 ||
-      this.selectedAudiences.size > 0 ||
-      this.selectedEditorId !== null ||
-      this.selectedAuthorId !== null ||
-      this.selectedIllustratorId !== null
+      (!!this.filters?.price && this.filters?.price !== 150) ||
+      !!this.filters?.seriesId ||
+      !!this.filters?.grade ||
+      (!!this.filters?.formats && this.filters.formats.length > 0) ||
+      (!!this.filters?.genres && this.filters.genres.length > 0) ||
+      (!!this.filters?.audiences && this.filters.audiences.length > 0) ||
+      !!this.filters?.editorId ||
+      !!this.filters?.authorId ||
+      !!this.filters?.illustratorId
     );
   }
 
-  get selectedSerieName(): String {
-    return this.series.find((s) => s.id === this.selectedSerieId)!.name;
+  get selectedSeriesName(): String {
+    return this.series.find((s) => s.id === this.filters?.seriesId)!.name;
   }
 
-  get selectedEditorName(): String {
-    return this.editors.find((e) => e.id === this.selectedEditorId)!.name;
-  }
+  selectedEditorName$ = this.editors$.pipe(
+    map(
+      (editors) => editors.find((e) => e.id === this.filters?.editorId)?.name,
+    ),
+  );
 
-  get selectedAuthorName(): String {
-    return this.authors.find((e) => e.id === this.selectedAuthorId)!.name;
-  }
+  selectedAuthorName$ = this.authors$.pipe(
+    map(
+      (authors) => authors.find((e) => e.id === this.filters?.authorId)?.name,
+    ),
+  );
 
-  get selectedIllustratorName(): String {
-    return this.illustrators.find((e) => e.id === this.selectedIllustratorId)!
-      .name;
-  }
+  selectedIllustratorName$ = this.illustrators$.pipe(
+    map(
+      (illustrators) =>
+        illustrators.find((e) => e.id === this.filters?.illustratorId)?.name,
+    ),
+  );
 }

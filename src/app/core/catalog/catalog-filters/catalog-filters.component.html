@@ -7,81 +7,92 @@
       </button>
     }
   </div>
+  <!-- Remove filers tags -->
   <div class="filter-tags-section">
-    @if (selectedPrice !== 150) {
-      <button class="filter-tag-button" (click)="selectedPrice = 150">
+    @if (!!filters?.price && filters?.price !== 150) {
+      <button
+        class="filter-tag-button"
+        (click)="filtersChange.emit({ price: 150 })"
+      >
         <img src="/icons/filters/cross-icon.svg" />
-        {{ selectedPrice }}€
+        {{ filters?.price }}€
       </button>
     }
-    @if (!!selectedSerieId) {
-      <button class="filter-tag-button" (click)="selectedSerieId = null">
+    @if (!!filters?.seriesId) {
+      <button
+        class="filter-tag-button"
+        (click)="filtersChange.emit({ seriesId: undefined })"
+      >
         <img src="/icons/filters/cross-icon.svg" />
-        {{ selectedSerieName }}
+        {{ selectedSeriesName }}
       </button>
     }
-    @if (!!selectedGrade) {
-      <button class="filter-tag-button" (click)="selectedGrade = undefined">
+    @if (!!filters?.grade) {
+      <button
+        class="filter-tag-button"
+        (click)="filtersChange.emit({ grade: undefined })"
+      >
         <img src="/icons/filters/cross-icon.svg" />
         <div style="display: flex">
-          {{ selectedGrade }}
+          {{ filters?.grade }}
           <img src="/icons/stars/star-filled.svg" />
         </div>
       </button>
     }
-    @if (selectedFormats.size > 0) {
+    @if (selectedFormats.length > 0) {
       @for (format of selectedFormats; track format) {
-        <button
-          class="filter-tag-button"
-          (click)="selectedFormats.delete(format)"
-        >
+        <button class="filter-tag-button" (click)="toggleFormat(format)">
           <img src="/icons/filters/cross-icon.svg" />
           {{ format }}
         </button>
       }
     }
-    @if (selectedGenres.size > 0) {
+    @if (selectedGenres.length > 0) {
       @for (genre of selectedGenres; track genre) {
-        <button
-          class="filter-tag-button"
-          (click)="selectedGenres.delete(genre)"
-        >
+        <button class="filter-tag-button" (click)="toggleGenre(genre)">
           <img src="/icons/filters/cross-icon.svg" />
           {{ genre }}
         </button>
       }
     }
-    @if (selectedAudiences.size > 0) {
+    @if (selectedAudiences.length > 0) {
       @for (audience of selectedAudiences; track audience) {
-        <button
-          class="filter-tag-button"
-          (click)="selectedAudiences.delete(audience)"
-        >
+        <button class="filter-tag-button" (click)="toggleAudience(audience)">
           <img src="/icons/filters/cross-icon.svg" />
           {{ audience }}
         </button>
       }
     }
-    @if (!!selectedEditorId) {
-      <button class="filter-tag-button" (click)="selectedEditorId = null">
+    @if (!!filters?.editorId) {
+      <button
+        class="filter-tag-button"
+        (click)="filtersChange.emit({ editorId: undefined })"
+      >
         <img src="/icons/filters/cross-icon.svg" />
-        {{ selectedEditorName }}
+        {{ selectedEditorName$ | async }}
       </button>
     }
-    @if (!!selectedAuthorId) {
-      <button class="filter-tag-button" (click)="selectedAuthorId = null">
+    @if (!!filters?.authorId) {
+      <button
+        class="filter-tag-button"
+        (click)="filtersChange.emit({ authorId: undefined })"
+      >
         <img src="/icons/filters/cross-icon.svg" />
-        {{ selectedAuthorName }}
+        {{ selectedAuthorName$ | async }}
       </button>
     }
-    @if (!!selectedIllustratorId) {
-      <button class="filter-tag-button" (click)="selectedIllustratorId = null">
+    @if (!!filters?.illustratorId) {
+      <button
+        class="filter-tag-button"
+        (click)="filtersChange.emit({ illustratorId: undefined })"
+      >
         <img src="/icons/filters/cross-icon.svg" />
-        {{ selectedIllustratorName }}
+        {{ selectedIllustratorName$ | async }}
       </button>
     }
   </div>
 
+  <!-- Filters selectors -->
   @for (filterType of filterTypes; track filterType) {
     <div class="filter-container">
       <div class="filter-row">
@@ -127,14 +138,15 @@
     <div class="expanded-filter-container">
       <div class="price-range">
         <p>0€</p>
-        <p>{{ selectedPrice }}€</p>
+        <p>{{ filters?.price ?? 150 }}€</p>
       </div>
       <input
         type="range"
         class="price-slider"
         min="0"
         max="150"
-        [(ngModel)]="selectedPrice"
+        [ngModel]="filters?.price"
+        (ngModelChange)="filtersChange.emit({ price: $event })"
       />
     </div>
   </ng-template>
@@ -144,10 +156,13 @@
     <div class="expanded-filter-container">
       <p class="selector-label">Série</p>
       <select
-        [(ngModel)]="selectedSerieId"
-        [class.placeholder]="selectedSerieId === null"
+        [class.placeholder]="!filters?.seriesId"
+        [ngModel]="filters?.seriesId"
+        (ngModelChange)="filtersChange.emit({ seriesId: $event })"
       >
-        <option [ngValue]="null" disabled hidden>Sélectionner une série</option>
+        <option [ngValue]="undefined" disabled hidden>
+          Sélectionner une série
+        </option>
         <option *ngFor="let serie of series" [value]="serie.id">
           {{ serie.name }}
         </option>
@@ -164,9 +179,10 @@
             type="radio"
             name="grade-filter"
             [value]="i"
-            [(ngModel)]="selectedGrade"
+            [ngModel]="filters?.grade"
+            (ngModelChange)="filtersChange.emit({ grade: $event })"
           />
-          <app-grade [grade]="i"></app-grade>
+          <app-grade [grade]="i" [displayTotal]="false"></app-grade>
           <p>et plus</p>
         </div>
       }
@@ -180,7 +196,7 @@
         <div class="format-row">
           <input
             type="checkbox"
-            [checked]="selectedFormats.has(format)"
+            [checked]="selectedFormats.includes(format)"
             (click)="toggleFormat(format)"
           />
           {{ format }}
@@ -196,7 +212,7 @@
         <div class="genre-row">
           <input
             type="checkbox"
-            [checked]="selectedGenres.has(genre)"
+            [checked]="selectedGenres.includes(genre)"
             (click)="toggleGenre(genre)"
           />
           {{ genre }}
@@ -212,7 +228,7 @@
         <div class="audience-row">
           <input
             type="checkbox"
-            [checked]="selectedAudiences.has(audience)"
+            [checked]="selectedAudiences.includes(audience)"
             (click)="toggleAudience(audience)"
           />
           {{ audience }}
@@ -227,13 +243,14 @@
       <div class="selector">
         <p class="selector-label">Editeur</p>
         <select
-          [(ngModel)]="selectedEditorId"
-          [class.placeholder]="selectedEditorId === null"
+          [ngModel]="filters?.editorId"
+          [class.placeholder]="!filters?.editorId"
+          (ngModelChange)="filtersChange.emit({ editorId: $event })"
         >
-          <option [ngValue]="null" disabled hidden>
+          <option [ngValue]="undefined" disabled hidden>
             Sélectionner un éditeur
           </option>
-          <option *ngFor="let editor of editors" [value]="editor.id">
+          <option *ngFor="let editor of editors$ | async" [value]="editor.id">
             {{ editor.name }}
           </option>
         </select>
@@ -242,13 +259,14 @@
       <div class="selector">
         <p class="selector-label">Auteur</p>
         <select
-          [(ngModel)]="selectedAuthorId"
-          [class.placeholder]="selectedAuthorId === null"
+          [ngModel]="filters?.authorId"
+          [class.placeholder]="!filters?.authorId"
+          (ngModelChange)="filtersChange.emit({ authorId: $event })"
         >
-          <option [ngValue]="null" disabled hidden>
+          <option [ngValue]="undefined" disabled hidden>
             Sélectionner un auteur
           </option>
-          <option *ngFor="let author of authors" [value]="author.id">
+          <option *ngFor="let author of authors$ | async" [value]="author.id">
             {{ author.name }}
           </option>
         </select>
@@ -257,14 +275,15 @@
       <div class="selector">
         <p class="selector-label">Illustrateur</p>
         <select
-          [(ngModel)]="selectedIllustratorId"
-          [class.placeholder]="selectedIllustratorId === null"
+          [ngModel]="filters?.illustratorId"
+          [class.placeholder]="!filters?.illustratorId"
+          (ngModelChange)="filtersChange.emit({ illustratorId: $event })"
         >
-          <option [ngValue]="null" disabled hidden>
+          <option [ngValue]="undefined" disabled hidden>
             Sélectionner un illustrateur
           </option>
           <option
-            *ngFor="let illustrator of illustrators"
+            *ngFor="let illustrator of illustrators$ | async"
             [value]="illustrator.id"
           >
             {{ illustrator.name }}

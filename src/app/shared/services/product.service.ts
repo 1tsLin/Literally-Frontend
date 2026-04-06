@@ -61,6 +61,10 @@ export class ProductService {
       if (filters.title) params = params.set('title', filters.title);
       if (filters.price) params = params.set('price', filters.price.toString());
       if (filters.authorId) params = params.set('authorId', filters.authorId);
+      if (filters.editorId) params = params.set('editorId', filters.editorId);
+      if (filters.illustratorId)
+        params = params.set('illustratorId', filters.illustratorId);
+
       if (filters.seriesId) params = params.set('seriesId', filters.seriesId);
 
       filters.formats?.forEach((f) => (params = params.append('formats', f)));
@@ -70,9 +74,8 @@ export class ProductService {
       );
     }
 
-    return this.http.get<CatalogProduct[]>(
-      `${this.apiUrl}/products?language=${language}`,
-      { params },
-    );
+    return this.http.get<CatalogProduct[]>(`${this.apiUrl}/products`, {
+      params,
+    });
   }
 }

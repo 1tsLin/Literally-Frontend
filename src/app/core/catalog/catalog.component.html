@@ -18,16 +18,22 @@
         Filtres <img src="/icons/filters/filters-icon.svg" />
       </button>
       @if (displayMobileFilter) {
-        <app-catalog-filters></app-catalog-filters>
+        <app-catalog-filters
+          [filters]="filters()"
+          (filtersChange)="updateFilters($event)"
+        ></app-catalog-filters>
       }
     </div>
     <!-- Desktop version of filters -->
     <div class="filters-section">
-      <app-catalog-filters></app-catalog-filters>
+      <app-catalog-filters
+        [filters]="filters()"
+        (filtersChange)="updateFilters($event)"
+      ></app-catalog-filters>
     </div>
     <!-- Products grid / Catalog -->
     <div class="products-section">
-      @for (product of catalogProducts$ | async; track product) {
+      @for (product of catalogProducts$ | async; track product.productId) {
         <app-catalog-product [product]="product"></app-catalog-product>
       }
     </div>
