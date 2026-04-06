@@ -1,5 +1,6 @@
 .page-content {
   padding: 10px 200px 10px 200px;
+  min-height: calc(85vh - 64px);
 }
 
 /*-- Admin buttons --*/

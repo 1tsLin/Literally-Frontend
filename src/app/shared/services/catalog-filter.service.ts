@@ -4,7 +4,7 @@ import { toObservable } from '@angular/core/rxjs-interop';
 
 @Injectable({ providedIn: 'root' })
 export class CatalogFilterService {
-  filters = signal<CatalogFilter>({
+  DEFAULT_FILTERS_VALUES: CatalogFilter = {
     title: undefined,
     price: 150,
     grade: undefined,
@@ -16,11 +16,17 @@ export class CatalogFilterService {
     formats: undefined,
     audiences: undefined,
     genres: undefined,
-  });
+  };
+
+  filters = signal<CatalogFilter>(this.DEFAULT_FILTERS_VALUES);
 
   filters$ = toObservable(this.filters);
 
-  updateFilters(partial: Partial<CatalogFilter>) {
+  updateFilters(partial: Partial<CatalogFilter>): void {
     this.filters.update((f) => ({ ...f, ...partial }));
+  }
+
+  resetFilters() {
+    this.filters.set(this.DEFAULT_FILTERS_VALUES);
   }
 }

@@ -17,6 +17,7 @@ import { ProductService } from '../../../shared/services/product.service';
 import { ContributorService } from '../../../shared/services/contributor.service';
 import { ContributorCategoryEnum } from '../../../shared/enums/contributor-category.enum';
 import { map } from 'rxjs';
+import { CatalogFilterService } from '../../../shared/services/catalog-filter.service';
 
 @Component({
   selector: 'app-catalog-filters',
@@ -25,13 +26,12 @@ import { map } from 'rxjs';
   styleUrl: './catalog-filters.component.css',
 })
 export class CatalogFiltersComponent {
-  @Input() filters?: CatalogFilter;
-  @Output() filtersChange = new EventEmitter<Partial<CatalogFilter>>();
-
   readonly FilterTypeEnum = FilterTypeEnum;
 
   private contributorService = inject(ContributorService);
+  private filterService = inject(CatalogFilterService);
 
+  filters = this.filterService.filters;
   filterState: Record<FilterTypeEnum, boolean> = {
     [FilterTypeEnum.PRICE]: false,
     [FilterTypeEnum.SERIE]: false,
@@ -71,21 +71,33 @@ export class CatalogFiltersComponent {
     this.selectedFormats = this.selectedFormats.includes(format)
       ? this.selectedFormats.filter((f) => f !== format)
       : [...this.selectedFormats, format];
-    this.filtersChange.emit({ formats: this.selectedFormats });
+    this.filterService.updateFilters({
+      formats: this.selectedFormats,
+    });
   }
 
   toggleGenre(genre: BookGenreEnum) {
     this.selectedGenres = this.selectedGenres.includes(genre)
       ? this.selectedGenres.filter((f) => f !== genre)
       : [...this.selectedGenres, genre];
-    this.filtersChange.emit({ genres: this.selectedGenres });
+    this.filterService.updateFilters({
+      genres: this.selectedGenres,
+    });
   }
 
   toggleAudience(audience: BookAudienceEnum) {
     this.selectedAudiences = this.selectedAudiences.includes(audience)
       ? this.selectedAudiences.filter((f) => f !== audience)
       : [...this.selectedAudiences, audience];
-    this.filtersChange.emit({ audiences: this.selectedAudiences });
+    this.filterService.updateFilters({
+      audiences: this.selectedAudiences,
+    });
+  }
+
+  updateFilterValue(name: keyof CatalogFilter, value: any) {
+    this.filterService.updateFilters({
+      [name]: value,
+    });
   }
 
   /*-- Reset every filters --*/
@@ -93,56 +105,44 @@ export class CatalogFiltersComponent {
     this.selectedFormats = [];
     this.selectedGenres = [];
     this.selectedAudiences = [];
-    this.filtersChange.emit({
-      title: undefined,
-      price: 150,
-      grade: undefined,
-      isFavorite: undefined,
-      seriesId: undefined,
-      authorId: undefined,
-      illustratorId: undefined,
-      editorId: undefined,
-      formats: undefined,
-      audiences: undefined,
-      genres: undefined,
-    });
+    this.filterService.resetFilters();
   }
 
   /*-- Get filters displayed value --*/
   get hasActiveFilters(): boolean {
     return (
-      (!!this.filters?.price && this.filters?.price !== 150) ||
-      !!this.filters?.seriesId ||
-      !!this.filters?.grade ||
-      (!!this.filters?.formats && this.filters.formats.length > 0) ||
-      (!!this.filters?.genres && this.filters.genres.length > 0) ||
-      (!!this.filters?.audiences && this.filters.audiences.length > 0) ||
-      !!this.filters?.editorId ||
-      !!this.filters?.authorId ||
-      !!this.filters?.illustratorId
+      (!!this.filters()?.price && this.filters()?.price !== 150) ||
+      !!this.filters()?.seriesId ||
+      !!this.filters()?.grade ||
+      (!!this.filters()?.formats && this.filters().formats!.length > 0) ||
+      (!!this.filters()?.genres && this.filters()?.genres!.length > 0) ||
+      (!!this.filters()?.audiences && this.filters()?.audiences!.length > 0) ||
+      !!this.filters()?.editorId ||
+      !!this.filters()?.authorId ||
+      !!this.filters()?.illustratorId
     );
   }
 
   get selectedSeriesName(): String {
-    return this.series.find((s) => s.id === this.filters?.seriesId)!.name;
+    return this.series.find((s) => s.id === this.filters()?.seriesId)!.name;
   }
 
   selectedEditorName$ = this.editors$.pipe(
     map(
-      (editors) => editors.find((e) => e.id === this.filters?.editorId)?.name,
+      (editors) => editors.find((e) => e.id === this.filters()?.editorId)?.name,
     ),
   );
 
   selectedAuthorName$ = this.authors$.pipe(
     map(
-      (authors) => authors.find((e) => e.id === this.filters?.authorId)?.name,
+      (authors) => authors.find((e) => e.id === this.filters()?.authorId)?.name,
     ),
   );
 
   selectedIllustratorName$ = this.illustrators$.pipe(
     map(
       (illustrators) =>
-        illustrators.find((e) => e.id === this.filters?.illustratorId)?.name,
+        illustrators.find((e) => e.id === this.filters()?.illustratorId)?.name,
     ),
   );
 }

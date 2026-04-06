@@ -6,8 +6,6 @@ import { RouterLink } from '@angular/router';
 import { ProductService } from '../../shared/services/product.service';
 import { LanguageEnum } from '../../shared/enums/language.enum';
 import { CommonModule } from '@angular/common';
-import { CatalogFilter } from '../../shared/interfaces/catalog-filter.model';
-import { toObservable } from '@angular/core/rxjs-interop';
 import { switchMap } from 'rxjs';
 import { CatalogFilterService } from '../../shared/services/catalog-filter.service';
 
@@ -30,27 +28,9 @@ export class CatalogComponent {
   isAdmin = true;
   displayMobileFilter = false;
 
-  filters = signal<CatalogFilter>({
-    title: undefined,
-    price: 150,
-    grade: undefined,
-    isFavorite: undefined,
-    seriesId: undefined,
-    authorId: undefined,
-    illustratorId: undefined,
-    editorId: undefined,
-    formats: undefined,
-    audiences: undefined,
-    genres: undefined,
-  });
-
-  catalogProducts$ = toObservable(this.filters).pipe(
+  catalogProducts$ = this.filterService.filters$.pipe(
     switchMap((filters) =>
       this.productService.getCatalog(LanguageEnum.FRENCH, filters),
     ),
   );
-
-  updateFilters(partial: Partial<CatalogFilter>): void {
-    this.filters.update((f) => ({ ...f, ...partial }));
-  }
 }

@@ -9,32 +9,32 @@
   </div>
   <!-- Remove filers tags -->
   <div class="filter-tags-section">
-    @if (!!filters?.price && filters?.price !== 150) {
+    @if (!!filters().price && filters().price !== 150) {
       <button
         class="filter-tag-button"
-        (click)="filtersChange.emit({ price: 150 })"
+        (click)="updateFilterValue('price', 150)"
       >
         <img src="/icons/filters/cross-icon.svg" />
-        {{ filters?.price }}€
+        {{ filters().price }}€
       </button>
     }
-    @if (!!filters?.seriesId) {
+    @if (!!filters().seriesId) {
       <button
         class="filter-tag-button"
-        (click)="filtersChange.emit({ seriesId: undefined })"
+        (click)="updateFilterValue('seriesId', undefined)"
       >
         <img src="/icons/filters/cross-icon.svg" />
         {{ selectedSeriesName }}
       </button>
     }
-    @if (!!filters?.grade) {
+    @if (!!filters().grade) {
       <button
         class="filter-tag-button"
-        (click)="filtersChange.emit({ grade: undefined })"
+        (click)="updateFilterValue('grade', undefined)"
       >
         <img src="/icons/filters/cross-icon.svg" />
         <div style="display: flex">
-          {{ filters?.grade }}
+          {{ filters().grade }}
           <img src="/icons/stars/star-filled.svg" />
         </div>
       </button>
@@ -63,28 +63,28 @@
         </button>
       }
     }
-    @if (!!filters?.editorId) {
+    @if (!!filters().editorId) {
       <button
         class="filter-tag-button"
-        (click)="filtersChange.emit({ editorId: undefined })"
+        (click)="updateFilterValue('editorId', undefined)"
       >
         <img src="/icons/filters/cross-icon.svg" />
         {{ selectedEditorName$ | async }}
       </button>
     }
-    @if (!!filters?.authorId) {
+    @if (!!filters().authorId) {
       <button
         class="filter-tag-button"
-        (click)="filtersChange.emit({ authorId: undefined })"
+        (click)="updateFilterValue('authorId', undefined)"
       >
         <img src="/icons/filters/cross-icon.svg" />
         {{ selectedAuthorName$ | async }}
       </button>
     }
-    @if (!!filters?.illustratorId) {
+    @if (!!filters().illustratorId) {
       <button
         class="filter-tag-button"
-        (click)="filtersChange.emit({ illustratorId: undefined })"
+        (click)="updateFilterValue('illustratorId', undefined)"
       >
         <img src="/icons/filters/cross-icon.svg" />
         {{ selectedIllustratorName$ | async }}
@@ -138,15 +138,15 @@
     <div class="expanded-filter-container">
       <div class="price-range">
         <p>0€</p>
-        <p>{{ filters?.price ?? 150 }}€</p>
+        <p>{{ filters().price ?? 150 }}€</p>
       </div>
       <input
         type="range"
         class="price-slider"
         min="0"
         max="150"
-        [ngModel]="filters?.price"
-        (ngModelChange)="filtersChange.emit({ price: $event })"
+        [ngModel]="filters().price"
+        (ngModelChange)="updateFilterValue('price', $event)"
       />
     </div>
   </ng-template>
@@ -156,9 +156,9 @@
     <div class="expanded-filter-container">
       <p class="selector-label">Série</p>
       <select
-        [class.placeholder]="!filters?.seriesId"
-        [ngModel]="filters?.seriesId"
-        (ngModelChange)="filtersChange.emit({ seriesId: $event })"
+        [class.placeholder]="!filters().seriesId"
+        [ngModel]="filters().seriesId"
+        (ngModelChange)="updateFilterValue('seriesId', $event)"
       >
         <option [ngValue]="undefined" disabled hidden>
           Sélectionner une série
@@ -179,8 +179,8 @@
             type="radio"
             name="grade-filter"
             [value]="i"
-            [ngModel]="filters?.grade"
-            (ngModelChange)="filtersChange.emit({ grade: $event })"
+            [ngModel]="filters().grade"
+            (ngModelChange)="updateFilterValue('grade', $event)"
           />
           <app-grade [grade]="i" [displayTotal]="false"></app-grade>
           <p>et plus</p>
@@ -243,9 +243,9 @@
       <div class="selector">
         <p class="selector-label">Editeur</p>
         <select
-          [ngModel]="filters?.editorId"
-          [class.placeholder]="!filters?.editorId"
-          (ngModelChange)="filtersChange.emit({ editorId: $event })"
+          [ngModel]="filters().editorId"
+          [class.placeholder]="!filters().editorId"
+          (ngModelChange)="updateFilterValue('editorId', $event)"
         >
           <option [ngValue]="undefined" disabled hidden>
             Sélectionner un éditeur
@@ -259,9 +259,9 @@
       <div class="selector">
         <p class="selector-label">Auteur</p>
         <select
-          [ngModel]="filters?.authorId"
-          [class.placeholder]="!filters?.authorId"
-          (ngModelChange)="filtersChange.emit({ authorId: $event })"
+          [ngModel]="filters().authorId"
+          [class.placeholder]="!filters().authorId"
+          (ngModelChange)="updateFilterValue('authorId', $event)"
         >
           <option [ngValue]="undefined" disabled hidden>
             Sélectionner un auteur
@@ -275,9 +275,9 @@
       <div class="selector">
         <p class="selector-label">Illustrateur</p>
         <select
-          [ngModel]="filters?.illustratorId"
-          [class.placeholder]="!filters?.illustratorId"
-          (ngModelChange)="filtersChange.emit({ illustratorId: $event })"
+          [ngModel]="filters().illustratorId"
+          [class.placeholder]="!filters().illustratorId"
+          (ngModelChange)="updateFilterValue('illustratorId', $event)"
         >
           <option [ngValue]="undefined" disabled hidden>
             Sélectionner un illustrateur

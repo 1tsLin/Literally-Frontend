@@ -4,8 +4,14 @@
   </a>
 
   <div class="middle-section">
-    <input class="search-bar" type="text" placeholder="Chercher par nom" />
-    <button class="search-button">
+    <input
+      class="search-bar"
+      type="text"
+      placeholder="Chercher par nom"
+      [(ngModel)]="searchInput"
+      (keydown.enter)="search()"
+    />
+    <button class="search-button" (click)="search()">
       <img src="/icons/search-icon.svg" />
     </button>
   </div>
