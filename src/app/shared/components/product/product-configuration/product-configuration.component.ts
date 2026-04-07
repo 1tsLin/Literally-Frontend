@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   ReactiveFormsModule,
   FormControl,
@@ -50,6 +50,7 @@ export class ProductConfigurationComponent {
   private productService = inject(ProductService);
   private mediaService = inject(MediaService);
   private cdr = inject(ChangeDetectorRef);
+  private router = inject(Router);
 
   editors$ = this.contributorService.getContributors(
     ContributorCategoryEnum.EDITOR,
@@ -246,7 +247,7 @@ export class ProductConfigurationComponent {
 
     if (this.id) {
       this.productService.updateProduct(this.id, this.product).subscribe({
-        next: (res) => console.log('OK', res),
+        next: () => this.router.navigate(['/catalog']),
         error: (err) => console.error('Error updating product', err),
       });
 
@@ -256,7 +257,7 @@ export class ProductConfigurationComponent {
       this.productService
         .createProduct(this.product, this.coverImageFile, this.backImageFile)
         .subscribe({
-          next: (res) => console.log('OK', res),
+          next: () => this.router.navigate(['/catalog']),
           error: (err) => console.error('Error creating product', err),
         });
     }

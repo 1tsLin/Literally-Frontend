@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { GradeComponent } from '../../../shared/components/grade/grade.component';
 import { CatalogProduct } from '../../../shared/interfaces/catalog-product.model';
+import { MediaService } from '../../../shared/services/media.service';
 
 @Component({
   selector: 'app-catalog-product',
@@ -8,6 +9,18 @@ import { CatalogProduct } from '../../../shared/interfaces/catalog-product.model
   templateUrl: './catalog-product.component.html',
   styleUrl: './catalog-product.component.css',
 })
-export class CatalogProductComponent {
+export class CatalogProductComponent implements OnInit {
   @Input() product!: CatalogProduct;
+
+  productCoverUrl = '/image-placeholder.svg';
+
+  private mediaService = inject(MediaService);
+
+  ngOnInit(): void {
+    if (this.product.coverId) {
+      this.productCoverUrl = this.mediaService.getMediaUrl(
+        this.product.coverId,
+      );
+    }
+  }
 }

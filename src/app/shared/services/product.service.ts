@@ -1,8 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
 import { Product } from '../interfaces/product.model';
+import { LanguageEnum } from '../enums/language.enum';
+import { CatalogProduct } from '../interfaces/catalog-product.model';
+import { CatalogFilter } from '../interfaces/catalog-filter.model';
 
 @Injectable({
   providedIn: 'root',
@@ -40,5 +43,39 @@ export class ProductService {
 
   getProduct(productId: string): Observable<Product> {
     return this.http.get<Product>(`${this.apiUrl}/products/${productId}`);
+  }
+
+  getCatalogProducts(language: LanguageEnum) {
+    return this.http.get<CatalogProduct[]>(
+      `${this.apiUrl}/products?language=${language}`,
+    );
+  }
+
+  getCatalog(
+    language: string,
+    filters?: CatalogFilter,
+  ): Observable<CatalogProduct[]> {
+    let params = new HttpParams().set('language', language);
+
+    if (filters) {
+      if (filters.title) params = params.set('title', filters.title);
+      if (filters.price) params = params.set('price', filters.price.toString());
+      if (filters.authorId) params = params.set('authorId', filters.authorId);
+      if (filters.editorId) params = params.set('editorId', filters.editorId);
+      if (filters.illustratorId)
+        params = params.set('illustratorId', filters.illustratorId);
+
+      if (filters.seriesId) params = params.set('seriesId', filters.seriesId);
+
+      filters.formats?.forEach((f) => (params = params.append('formats', f)));
+      filters.genres?.forEach((g) => (params = params.append('genres', g)));
+      filters.audiences?.forEach(
+        (a) => (params = params.append('audiences', a)),
+      );
+    }
+
+    return this.http.get<CatalogProduct[]>(`${this.apiUrl}/products`, {
+      params,
+    });
   }
 }

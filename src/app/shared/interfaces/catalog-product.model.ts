@@ -1,12 +1,13 @@
 import { v4 as uuid } from 'uuid';
 
 export interface CatalogProduct {
-  id?: typeof uuid;
+  productId?: typeof uuid;
   title: string;
-  author: string;
+  authorName: string;
   grade: number;
-  totalReview: number;
+  reviews: number;
   price: number;
   isFavorite: boolean;
-  illustration: string;
+  coverId?: string;
+  illustration?: string;
 }

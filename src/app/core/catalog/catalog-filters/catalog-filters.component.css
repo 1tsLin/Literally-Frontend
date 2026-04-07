@@ -25,6 +25,7 @@
 
 .delete-filters-button:hover {
   text-decoration: underline;
+  box-shadow: none;
 }
 
 .filter-tags-section {

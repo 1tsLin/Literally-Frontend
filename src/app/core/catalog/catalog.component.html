@@ -27,7 +27,7 @@
     </div>
     <!-- Products grid / Catalog -->
     <div class="products-section">
-      @for (product of catalogProducts; track product) {
+      @for (product of catalogProducts$ | async; track product.productId) {
         <app-catalog-product [product]="product"></app-catalog-product>
       }
     </div>
