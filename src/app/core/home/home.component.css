@@ -1,0 +1,144 @@
+.page-content {
+  min-height: calc(85vh - 64px);
+}
+
+/*-- Hero Section --*/
+.hero-section {
+  background-color: #fae3ba;
+  padding: 10px 0 10px 0;
+  display: flex;
+  align-items: center;
+}
+
+.hero-text {
+  padding: 0 200px 0 200px;
+}
+
+.hero-text .headline {
+  font-size: 20px;
+  color: #ffa3a3;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.hero-text .title {
+  font-weight: bolder;
+  font-size: 40px;
+  color: #d86f6f;
+  margin-bottom: 12px;
+}
+
+.hero-text .description {
+  font-size: 20px;
+  color: #be7339;
+  margin-bottom: 15px;
+}
+
+.catalog-button {
+  color: #d86f6f;
+  border: 1px #d86f6f solid;
+  outline: 1px #d86f6f solid;
+  outline-offset: -0.3rem;
+
+  padding: 10px 20px 10px 20px;
+  border-radius: 20px;
+  background-color: white;
+  font-weight: bold;
+
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.catalog-button:active {
+  background-color: #d86f6f;
+  color: white;
+  outline: 2px white solid;
+}
+
+/*-- Hightlight section --*/
+.hightlight-section {
+  padding: 30px 200px 30px 200px;
+}
+
+.section-headline {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 16px;
+  color: #d86f6f;
+  font-weight: bold;
+}
+
+.section-headline .line {
+  background-color: #d86f6f;
+  height: 2px;
+  width: 20px;
+  border: 0;
+  font-size: 0;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 20px;
+
+  padding: 10px;
+}
+
+/* Mobile (Phones) : < 768px */
+@media (max-width: 767px) {
+  .hero-section {
+    flex-direction: column;
+  }
+
+  .hero-text {
+    padding: 0 20px;
+  }
+
+  .hero-image {
+    width: 100%;
+  }
+
+  .hightlight-section {
+    padding: 10px;
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Mobile (Tablets) : 768px — 1024px */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .hero-section {
+    flex-direction: column;
+  }
+
+  .hero-text {
+    padding: 10px 50px 10px 50px;
+  }
+
+  .hightlight-section {
+    padding: 10px 50px;
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Computers : 1025px — 1440px */
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .hightlight-section {
+    padding: 30px 200px 30px 200px;
+  }
+}
+
+/* Big screens : > 1440px */
+@media (min-width: 1441px) {
+  .hightlight-section {
+    padding: 30px 200px 30px 200px;
+  }
+}
