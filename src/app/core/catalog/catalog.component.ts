@@ -1,6 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
 import { CatalogProductComponent } from './catalog-product/catalog-product.component';
-import { catalogProducts } from '../../shared/dummy-data';
 import { CatalogFiltersComponent } from './catalog-filters/catalog-filters.component';
 import { RouterLink } from '@angular/router';
 import { ProductService } from '../../shared/services/product.service';
@@ -24,7 +23,6 @@ export class CatalogComponent {
   private productService = inject(ProductService);
   private filterService = inject(CatalogFilterService);
 
-  catalogProducts = catalogProducts;
   isAdmin = true;
   displayMobileFilter = false;
 

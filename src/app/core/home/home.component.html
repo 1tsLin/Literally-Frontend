@@ -1,0 +1,31 @@
+<div class="page-content">
+  <div class="hero-section">
+    <div class="hero-text">
+      <p class="headline">TOUT EN UN SEUL ENDROIT</p>
+      <p class="title">
+        Redécouvrez le plaisir de choisir votre prochaine histoire
+      </p>
+      <p class="description">
+        Literally, la librairie qui répertorie tous vos livres favoris.
+        Parcourez un univers de livres et enrichissez votre bibliothèque en
+        toute simplicité.
+      </p>
+      <button class="catalog-button" (click)="goToCatalog()">
+        Explorer <img src="/icons/next-button-icon.svg" />
+      </button>
+    </div>
+    <img class="hero-image" src="/landing-hero.svg" />
+  </div>
+
+  <div class="hightlight-section">
+    <div class="section-headline">
+      <span class="line"></span>
+      Notre sélection
+    </div>
+    <div class="products-grid">
+      @for (product of hightlightProducts$ | async; track product.productId) {
+        <app-hightlight-product [product]="product"></app-hightlight-product>
+      }
+    </div>
+  </div>
+</div>
