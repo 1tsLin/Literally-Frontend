@@ -1,0 +1,114 @@
+.page-content {
+  min-height: calc(85vh - 64px);
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
+/*-- Text section --*/
+.text {
+  padding: 0 200px 0 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.text .headline {
+  font-size: 20px;
+  color: #ffa3a3;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.text .title {
+  font-weight: bolder;
+  font-size: 40px;
+  color: #d86f6f;
+  margin-bottom: 12px;
+}
+
+.text .description {
+  font-size: 20px;
+  color: #be7339;
+  margin-bottom: 40px;
+}
+
+.home-button {
+  color: #d86f6f;
+  border: 1px #d86f6f solid;
+  outline: 1px #d86f6f solid;
+  outline-offset: -0.3rem;
+
+  padding: 10px 20px 10px 20px;
+  border-radius: 20px;
+  background-color: white;
+  font-weight: bold;
+
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.home-button:active {
+  background-color: #d86f6f;
+  color: white;
+  outline: 2px white solid;
+}
+
+/*-- Illustration section --*/
+.illustration-section {
+  display: flex;
+  justify-content: end;
+  align-items: end;
+}
+
+/* Mobile (Phones) : < 768px */
+@media (max-width: 767px) {
+  .page-content {
+    grid-template-columns: 1fr;
+  }
+
+  .text {
+    padding: 0;
+  }
+
+  .text .description {
+    margin-bottom: 20px;
+    padding: 10px;
+  }
+
+  .text .headline {
+    margin-bottom: 0;
+    padding: 10px;
+  }
+
+  .home-button {
+    margin-left: 10px;
+  }
+
+  .illustration {
+    width: 100%;
+  }
+}
+
+/* Mobile (Tablets) : 768px — 1024px */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .text {
+    padding: 20px 50px 20px 50px;
+  }
+
+  .illustration {
+    width: 130%;
+  }
+
+  .text .description {
+    margin-bottom: 20px;
+  }
+}
+
+/* Computers : 1025px — 1440px */
+@media (min-width: 1025px) and (max-width: 1440px) {
+}
+
+/* Big screens : > 1440px */
+@media (min-width: 1441px) {
+}

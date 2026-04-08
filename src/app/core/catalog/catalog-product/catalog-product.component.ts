@@ -2,6 +2,7 @@ import { Component, inject, Input, OnInit } from '@angular/core';
 import { GradeComponent } from '../../../shared/components/grade/grade.component';
 import { CatalogProduct } from '../../../shared/interfaces/catalog-product.model';
 import { MediaService } from '../../../shared/services/media.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-catalog-product',
@@ -11,6 +12,8 @@ import { MediaService } from '../../../shared/services/media.service';
 })
 export class CatalogProductComponent implements OnInit {
   @Input() product!: CatalogProduct;
+
+  private router = inject(Router);
 
   productCoverUrl = '/image-placeholder.svg';
 
@@ -22,5 +25,9 @@ export class CatalogProductComponent implements OnInit {
         this.product.coverId,
       );
     }
+  }
+
+  seeDetails() {
+    this.router.navigate(['/product/' + this.product.productId]);
   }
 }

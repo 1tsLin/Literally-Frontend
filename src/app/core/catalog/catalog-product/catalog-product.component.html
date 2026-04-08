@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" (click)="seeDetails()">
   <div class="book-cover">
     <img [src]="productCoverUrl" />
   </div>
@@ -6,7 +6,9 @@
     <div class="favorite-button-row">
       <button
         class="add-favorite-button"
-        (click)="product.isFavorite = !product.isFavorite"
+        (click)="
+          product.isFavorite = !product.isFavorite; $event.stopPropagation()
+        "
       >
         @if (product.isFavorite) {
           <img src="/icons/added-favorite.svg" />
@@ -25,7 +27,9 @@
     ></app-grade>
     <p class="book-price">{{ product.price }}<span class="currency">€</span></p>
     <div class="cart-button-row">
-      <button class="add-cart-button">Ajouter au panier</button>
+      <button class="add-cart-button" (click)="$event.stopPropagation()">
+        Ajouter au panier
+      </button>
     </div>
   </div>
 </div>

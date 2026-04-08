@@ -1,0 +1,156 @@
+.page-content {
+  min-height: calc(85vh - 64px);
+  padding: 30px 200px 30px 200px;
+}
+
+.details-section,
+.description-section {
+  margin-bottom: 20px;
+}
+
+/*-- General section --*/
+.general-section {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+/* Images */
+.images {
+  display: flex;
+  gap: 20px;
+}
+
+.images .preview img {
+  width: 85px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.images .active img {
+  width: 250px;
+  height: 350px;
+}
+
+.images .preview img,
+.images .active img {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Text information */
+.information {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.information .title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  font-size: 32px;
+  margin-bottom: 30px;
+}
+
+.add-favorite-button {
+  background-color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.information .author,
+.information .illustrator {
+  font-size: 24px;
+}
+
+.information .editor {
+  font-size: 20px;
+  font-style: italic;
+}
+
+.information .author,
+.information .illustrator,
+.information .editor {
+  color: #898a9c;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.information .author:hover,
+.information .illustrator:hover,
+.information .editor:hover {
+  text-decoration: underline;
+}
+
+.add-cart-button {
+  padding: 10px 30px 10px 30px;
+  background-color: #d86f6f;
+  border: none;
+  color: white;
+  font-size: 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 550;
+}
+
+.add-cart-button:active {
+  background-color: #b05b5b;
+}
+
+/*-- Details section --*/
+.details-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+}
+
+.info-line {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.info-line .title {
+  color: #898a9c;
+}
+
+/* Mobile (Phones) : < 768px */
+@media (max-width: 767px) {
+  .page-content {
+    padding: 10px;
+  }
+
+  .details-section {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .general-section {
+    flex-direction: column;
+  }
+}
+
+/* Mobile (Tablets) : 768px — 1024px */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .page-content {
+    padding: 10px 50px;
+  }
+
+  .details-section {
+    gap: 30px;
+  }
+}
+
+/* Computers : 1025px — 1440px */
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .page-content {
+    padding: 30px 200px 30px 200px;
+  }
+}
+
+/* Big screens : > 1440px */
+@media (min-width: 1441px) {
+  .page-content {
+    padding: 30px 200px 30px 200px;
+  }
+}

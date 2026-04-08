@@ -7,6 +7,7 @@
 
   display: grid;
   grid-template-columns: 1fr 2fr;
+  cursor: pointer;
 }
 
 .book-cover {
@@ -77,7 +78,6 @@
   background-color: #d86f6f;
   border: none;
   color: white;
-  font-weight: 500;
   font-size: 15px;
   border-radius: 20px;
   cursor: pointer;

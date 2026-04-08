@@ -1,1 +1,106 @@
-<p>product-details works!</p>
+<div class="page-content">
+  <!-- Product general info -->
+  <div class="general-section">
+    <!-- Images -->
+    <div class="images">
+      <div class="preview">
+        <img
+          [src]="coverImageUrl"
+          (click)="changeActiveImage(MediaCategory.PRODUCT_COVER)"
+        />
+        @if (backImageUrl) {
+          <img
+            [src]="backImageUrl"
+            (click)="changeActiveImage(MediaCategory.PRODUCT_BACK)"
+          />
+        }
+      </div>
+      <div class="active">
+        @if (activeImage == MediaCategory.PRODUCT_COVER) {
+          <img [src]="coverImageUrl" />
+        }
+        @if (activeImage == MediaCategory.PRODUCT_BACK) {
+          <img [src]="backImageUrl" />
+        }
+      </div>
+    </div>
+    <!-- Textual information -->
+    <div class="information">
+      <div class="title">
+        <p>{{ getTitle }}</p>
+        <button class="add-favorite-button" (click)="isFavorite = !isFavorite">
+          @if (isFavorite) {
+            <img src="/icons/added-favorite.svg" />
+          } @else {
+            <img src="/icons/add-favorite.svg" />
+          }
+        </button>
+      </div>
+      <p class="author">{{ author?.name }}</p>
+      @if (author?.name != illustrator?.name) {
+        <p class="illustrator">{{ illustrator?.name }}</p>
+      }
+      <p class="editor">{{ editor?.name }}</p>
+      <button class="add-cart-button" (click)="$event.stopPropagation()">
+        Ajouter au panier | {{ product?.price }}€
+      </button>
+    </div>
+  </div>
+
+  <!-- Product description section -->
+  <app-section-header
+    title="Description"
+    [(isOpen)]="isDescriptionOpen"
+  ></app-section-header>
+  @if (isDescriptionOpen) {
+    <div class="description-section">
+      {{ getDescription }}
+    </div>
+  }
+
+  <!-- Product details section -->
+  <app-section-header
+    title="Détails"
+    [(isOpen)]="isDetailsOpen"
+  ></app-section-header>
+  @if (isDetailsOpen) {
+    <div class="details-section">
+      <div>
+        <div class="info-line">
+          <p class="title">Auteur</p>
+          <p class="value">{{ author?.name }}</p>
+        </div>
+        <div class="info-line">
+          <p class="title">Dessinateur</p>
+          <p class="value">{{ illustrator?.name }}</p>
+        </div>
+        <div class="info-line">
+          <p class="title">Editeur</p>
+          <p class="value">{{ editor?.name }}</p>
+        </div>
+        <div class="info-line">
+          <p class="title">Date de publication</p>
+          <p class="value">{{ publishingDate }}</p>
+        </div>
+      </div>
+      <div>
+        <div class="info-line">
+          <p class="title">EAN</p>
+          <p class="value">{{ product?.ean }}</p>
+        </div>
+        <div class="info-line">
+          <p class="title">Nombre de pages</p>
+          <p class="value">{{ product?.pages }}</p>
+        </div>
+        <div class="info-line">
+          <p class="title">Poids</p>
+          <p class="value">{{ product?.weight }} kg</p>
+        </div>
+        <div class="info-line">
+          <p class="title">Format</p>
+          <p class="value">{{ product?.width }}cm x {{ product?.height }}cm</p>
+        </div>
+      </div>
+    </div>
+  }
+</div>
