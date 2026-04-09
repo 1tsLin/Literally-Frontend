@@ -24,4 +24,10 @@ export class ContributorService {
       params,
     });
   }
+
+  getContributor(contributorId: string) {
+    return this.http.get<Contributor>(
+      `${this.apiUrl}/contributors/${contributorId}`,
+    );
+  }
 }
