@@ -7,11 +7,17 @@
         <img
           [src]="coverImageUrl"
           (click)="changeActiveImage(MediaCategory.PRODUCT_COVER)"
+          [style.opacity]="
+            activeImage === MediaCategory.PRODUCT_COVER ? 1 : 0.4
+          "
         />
         @if (backImageUrl) {
           <img
             [src]="backImageUrl"
             (click)="changeActiveImage(MediaCategory.PRODUCT_BACK)"
+            [style.opacity]="
+              activeImage === MediaCategory.PRODUCT_BACK ? 1 : 0.4
+            "
           />
         }
       </div>

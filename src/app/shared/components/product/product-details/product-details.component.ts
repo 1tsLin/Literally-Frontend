@@ -49,7 +49,7 @@ export class ProductDetailsComponent implements OnInit {
         next: (product) => {
           this.product = product;
           this.publishingDate = product.publishingDate
-            ? new Date(product.publishingDate).toISOString().split('T')[0]
+            ? new Date(product.publishingDate).toLocaleDateString('fr-FR')
             : undefined;
           if (product.authorId)
             this.contributorService
