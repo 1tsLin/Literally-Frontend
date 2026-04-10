@@ -1,9 +1,9 @@
 <div class="filters">
   <div class="headtitle">
-    <p>Filtres</p>
+    <p>{{ "PAGES.CATALOG.FILTERS.TITLE" | translate }}</p>
     @if (hasActiveFilters) {
       <button class="delete-filters-button" (click)="removeAllFilter()">
-        Tout retirer
+        {{ "PAGES.CATALOG.FILTERS.CLEAR" | translate }}
       </button>
     }
   </div>
@@ -43,7 +43,7 @@
       @for (format of selectedFormats; track format) {
         <button class="filter-tag-button" (click)="toggleFormat(format)">
           <img src="/icons/filters/cross-icon.svg" />
-          {{ format }}
+          {{ "ENUMS.BOOK_FORMAT." + format | translate }}
         </button>
       }
     }
@@ -51,7 +51,7 @@
       @for (genre of selectedGenres; track genre) {
         <button class="filter-tag-button" (click)="toggleGenre(genre)">
           <img src="/icons/filters/cross-icon.svg" />
-          {{ genre }}
+          {{ "ENUMS.BOOK_GENRE." + genre | translate }}
         </button>
       }
     }
@@ -59,7 +59,7 @@
       @for (audience of selectedAudiences; track audience) {
         <button class="filter-tag-button" (click)="toggleAudience(audience)">
           <img src="/icons/filters/cross-icon.svg" />
-          {{ audience }}
+          {{ "ENUMS.BOOK_AUDIENCE." + audience | translate }}
         </button>
       }
     }
@@ -96,7 +96,9 @@
   @for (filterType of filterTypes; track filterType) {
     <div class="filter-container">
       <div class="filter-row">
-        <p class="filter-title">{{ filterType }}</p>
+        <p class="filter-title">
+          {{ "ENUMS.FILTER_TYPE." + filterType | translate }}
+        </p>
         <button class="see-filter-button" (click)="updateFilterUI(filterType)">
           @if (filterState[filterType]) {
             <img src="/icons/filters/less-icon.svg" />
@@ -110,7 +112,7 @@
           @case (FilterTypeEnum.PRICE) {
             <ng-container [ngTemplateOutlet]="priceFilter"></ng-container>
           }
-          @case (FilterTypeEnum.SERIE) {
+          @case (FilterTypeEnum.SERIES) {
             <ng-container [ngTemplateOutlet]="serieFilter"></ng-container>
           }
           @case (FilterTypeEnum.GRADE) {
@@ -154,14 +156,14 @@
   <!-- Expanded serie filter -->
   <ng-template #serieFilter>
     <div class="expanded-filter-container">
-      <p class="selector-label">Série</p>
+      <p class="selector-label">{{ "ENUMS.FILTER_TYPE.SERIES" | translate }}</p>
       <select
         [class.placeholder]="!filters().seriesId"
         [ngModel]="filters().seriesId"
         (ngModelChange)="updateFilterValue('seriesId', $event)"
       >
         <option [ngValue]="undefined" disabled hidden>
-          Sélectionner une série
+          {{ "ENUMS.FILTER_PLACEHOLDER.SERIES" | translate }}
         </option>
         <option *ngFor="let serie of series" [value]="serie.id">
           {{ serie.name }}
@@ -183,7 +185,7 @@
             (ngModelChange)="updateFilterValue('grade', $event)"
           />
           <app-grade [grade]="i" [displayTotal]="false"></app-grade>
-          <p>et plus</p>
+          <p>{{ "ENUMS.FILTER_PLACEHOLDER.GRADE" | translate }}</p>
         </div>
       }
     </div>
@@ -199,7 +201,7 @@
             [checked]="selectedFormats.includes(format)"
             (click)="toggleFormat(format)"
           />
-          {{ format }}
+          {{ "ENUMS.BOOK_FORMAT." + format | translate }}
         </div>
       }
     </div>
@@ -215,7 +217,7 @@
             [checked]="selectedGenres.includes(genre)"
             (click)="toggleGenre(genre)"
           />
-          {{ genre }}
+          {{ "ENUMS.BOOK_GENRE." + genre | translate }}
         </div>
       }
     </div>
@@ -231,7 +233,7 @@
             [checked]="selectedAudiences.includes(audience)"
             (click)="toggleAudience(audience)"
           />
-          {{ audience }}
+          {{ "ENUMS.BOOK_AUDIENCE." + audience | translate }}
         </div>
       }
     </div>
@@ -241,14 +243,16 @@
   <ng-template #contributorFilter>
     <div class="expanded-filter-container">
       <div class="selector">
-        <p class="selector-label">Editeur</p>
+        <p class="selector-label">
+          {{ "ENUMS.FILTER_TYPE.EDITOR" | translate }}
+        </p>
         <select
           [ngModel]="filters().editorId"
           [class.placeholder]="!filters().editorId"
           (ngModelChange)="updateFilterValue('editorId', $event)"
         >
           <option [ngValue]="undefined" disabled hidden>
-            Sélectionner un éditeur
+            {{ "ENUMS.FILTER_PLACEHOLDER.EDITOR" | translate }}
           </option>
           <option *ngFor="let editor of editors$ | async" [value]="editor.id">
             {{ editor.name }}
@@ -257,14 +261,16 @@
       </div>
 
       <div class="selector">
-        <p class="selector-label">Auteur</p>
+        <p class="selector-label">
+          {{ "ENUMS.FILTER_TYPE.AUTHOR" | translate }}
+        </p>
         <select
           [ngModel]="filters().authorId"
           [class.placeholder]="!filters().authorId"
           (ngModelChange)="updateFilterValue('authorId', $event)"
         >
           <option [ngValue]="undefined" disabled hidden>
-            Sélectionner un auteur
+            {{ "ENUMS.FILTER_PLACEHOLDER.AUTHOR" | translate }}
           </option>
           <option *ngFor="let author of authors$ | async" [value]="author.id">
             {{ author.name }}
@@ -273,14 +279,16 @@
       </div>
 
       <div class="selector">
-        <p class="selector-label">Illustrateur</p>
+        <p class="selector-label">
+          {{ "ENUMS.FILTER_TYPE.ILLUSTRATOR" | translate }}
+        </p>
         <select
           [ngModel]="filters().illustratorId"
           [class.placeholder]="!filters().illustratorId"
           (ngModelChange)="updateFilterValue('illustratorId', $event)"
         >
           <option [ngValue]="undefined" disabled hidden>
-            Sélectionner un illustrateur
+            {{ "ENUMS.FILTER_PLACEHOLDER.ILLUSTRATOR" | translate }}
           </option>
           <option
             *ngFor="let illustrator of illustrators$ | async"

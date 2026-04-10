@@ -8,11 +8,12 @@ import { ContributorService } from '../../../services/contributor.service';
 import { Contributor } from '../../../interfaces/contributor.model';
 import { MediaCategoryEnum } from '../../../enums/media-category.enum';
 import { MediaService } from '../../../services/media.service';
-import { Media } from '../../../interfaces/media.model';
+import { TranslateModule } from '@ngx-translate/core';
+import { AppStateService } from '../../../services/app-state.service';
 
 @Component({
   selector: 'app-product-details',
-  imports: [SectionHeaderComponent],
+  imports: [SectionHeaderComponent, TranslateModule],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.css',
 })
@@ -24,6 +25,7 @@ export class ProductDetailsComponent implements OnInit {
   private mediaService = inject(MediaService);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
+  private appState = inject(AppStateService);
 
   id?: string;
   product?: Product;
@@ -87,14 +89,14 @@ export class ProductDetailsComponent implements OnInit {
 
   get getDescription() {
     const localization = this.product?.localizations.filter(
-      (localization) => localization.language == LanguageEnum.FRENCH,
+      (localization) => localization.language == this.appState.language(),
     )[0];
     return localization?.description;
   }
 
   get getTitle() {
     const localization = this.product?.localizations.filter(
-      (localization) => localization.language == LanguageEnum.FRENCH,
+      (localization) => localization.language == this.appState.language(),
     )[0];
     return localization?.name;
   }

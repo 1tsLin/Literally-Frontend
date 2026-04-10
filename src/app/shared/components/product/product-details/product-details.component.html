@@ -48,14 +48,14 @@
       }
       <p class="editor">{{ editor?.name }}</p>
       <button class="add-cart-button" (click)="$event.stopPropagation()">
-        Ajouter au panier | {{ product?.price }}€
+        {{ "PAGES.PRODUCT.ADD" | translate }} | {{ product?.price }}€
       </button>
     </div>
   </div>
 
   <!-- Product description section -->
   <app-section-header
-    title="Description"
+    [title]="'PAGES.PRODUCT.DESCRIPTION.TITLE' | translate"
     [(isOpen)]="isDescriptionOpen"
   ></app-section-header>
   @if (isDescriptionOpen) {
@@ -66,44 +66,48 @@
 
   <!-- Product details section -->
   <app-section-header
-    title="Détails"
+    [title]="'PAGES.PRODUCT.DETAILS.TITLE' | translate"
     [(isOpen)]="isDetailsOpen"
   ></app-section-header>
   @if (isDetailsOpen) {
     <div class="details-section">
       <div>
         <div class="info-line">
-          <p class="title">Auteur</p>
+          <p class="title">{{ "PAGES.PRODUCT.DETAILS.AUTHOR" | translate }}</p>
           <p class="value">{{ author?.name }}</p>
         </div>
         <div class="info-line">
-          <p class="title">Dessinateur</p>
+          <p class="title">
+            {{ "PAGES.PRODUCT.DETAILS.ILLUSTRATOR" | translate }}
+          </p>
           <p class="value">{{ illustrator?.name }}</p>
         </div>
         <div class="info-line">
-          <p class="title">Editeur</p>
+          <p class="title">{{ "PAGES.PRODUCT.DETAILS.EDITOR" | translate }}</p>
           <p class="value">{{ editor?.name }}</p>
         </div>
         <div class="info-line">
-          <p class="title">Date de publication</p>
+          <p class="title">
+            {{ "PAGES.PRODUCT.DETAILS.PUBLISHING_DATE" | translate }}
+          </p>
           <p class="value">{{ publishingDate }}</p>
         </div>
       </div>
       <div>
         <div class="info-line">
-          <p class="title">EAN</p>
+          <p class="title">{{ "PAGES.PRODUCT.DETAILS.EAN" | translate }}</p>
           <p class="value">{{ product?.ean }}</p>
         </div>
         <div class="info-line">
-          <p class="title">Nombre de pages</p>
+          <p class="title">{{ "PAGES.PRODUCT.DETAILS.PAGES" | translate }}</p>
           <p class="value">{{ product?.pages }}</p>
         </div>
         <div class="info-line">
-          <p class="title">Poids</p>
+          <p class="title">{{ "PAGES.PRODUCT.DETAILS.WEIGHT" | translate }}</p>
           <p class="value">{{ product?.weight }} kg</p>
         </div>
         <div class="info-line">
-          <p class="title">Format</p>
+          <p class="title">{{ "PAGES.PRODUCT.DETAILS.FORMAT" | translate }}</p>
           <p class="value">{{ product?.width }}cm x {{ product?.height }}cm</p>
         </div>
       </div>

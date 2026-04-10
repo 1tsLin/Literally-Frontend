@@ -1,16 +1,18 @@
 <div class="page-content">
   <div class="text">
-    <p class="headline">PAGE INTROUVABLE</p>
+    <p class="headline">{{ "PAGES.ERROR.HEADLINE" | translate }}</p>
     <div>
       <img src="/icons/404.svg" />
     </div>
     <p class="description">
-      On dirait que cette page n’existe pas ou qu’une erreur est survenue.<br />Vous
-      pouvez re-essayer plus tard ou contacter l’équipe de développement !
+      {{ "PAGES.ERROR.DESCRIPTION" | translate }}<br />{{
+        "PAGES.ERROR.TRY_LATER" | translate
+      }}
     </p>
     <div>
       <button class="home-button" (click)="goHome()">
-        Revenir sur le site <img src="/icons/next-button-icon.svg" />
+        {{ "PAGES.ERROR.BUTTON" | translate }}
+        <img src="/icons/next-button-icon.svg" />
       </button>
     </div>
   </div>

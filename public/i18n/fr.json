@@ -1,0 +1,140 @@
+{
+  "ENUMS": {
+    "LANGUAGE": {
+      "FRENCH": "Français",
+      "ENGLISH": "Anglais"
+    },
+    "BOOK_FORMAT": {
+      "NOVEL": "Roman",
+      "SHORT_STORY": "Histoire courte",
+      "POETRY": "Poésie",
+      "PLAY": "Théâtre",
+      "COMIC": "Bande dessinée",
+      "MANGA": "Manga",
+      "MANHWA": "Manhwa",
+      "MANHUA": "Manhua",
+      "GRAPHIC_NOVEL": "Roman graphique"
+    },
+    "BOOK_AUDIENCE": {
+      "CHILDREN": "Jeunesse",
+      "TEEN": "Adolescents",
+      "ADULT": "Adultes",
+      "SHONEN": "Shonen",
+      "SEINEN": "Seinen",
+      "SHOJO": "Shojo",
+      "JOSEI": "Josei"
+    },
+    "BOOK_GENRE": {
+      "FANTASY": "Fantasy",
+      "SCI_FI": "Science-fiction",
+      "ROMANCE": "Romance",
+      "THRILLER": "Thriller",
+      "MYSTERY": "Policier",
+      "HORROR": "Horreur",
+      "HISTORICAL": "Historique",
+      "DRAMA": "Drame",
+      "ADVENTURE": "Aventure",
+      "SLICE_OF_LIFE": "Tranche de vie"
+    },
+    "CONTRIBUTOR": {
+      "EDITOR": "Editeur",
+      "AUTHOR": "Auteur",
+      "ILLUSTRATOR": "Illustrateur"
+    },
+    "MEDIA_CATEGORY": {
+      "REVIEW": "Avis",
+      "PRODUCT_COVER": "Couverture",
+      "PRODUCT_BACK": "Dos",
+      "SERIES": "Collection"
+    },
+    "FILTER_TYPE": {
+      "PRICE": "Prix",
+      "SERIES": "Collection",
+      "GRADE": "Note",
+      "FORMAT": "Format",
+      "GENRE": "Genre",
+      "AUDIENCE": "Audience",
+      "CONTRIBUTOR": "Contributeurs",
+      "EDITOR": "Editeur",
+      "AUTHOR": "Auteur",
+      "ILLUSTRATOR": "Illustrateur"
+    },
+    "FILTER_PLACEHOLDER": {
+      "SERIES": "Sélectionner une série",
+      "GRADE": "et plus",
+      "FORMAT": "Format",
+      "GENRE": "Genre",
+      "AUDIENCE": "Audience",
+      "CONTRIBUTOR": "Contributeurs",
+      "EDITOR": "Sélecteionner un éditeur",
+      "AUTHOR": "Sélectionner un auteur",
+      "ILLUSTRATOR": "Sélectionner un illustrateur"
+    }
+  },
+  "PAGES": {
+    "HOME": {
+      "HERO": {
+        "HEADLINE": "TOUT EN UN SEUL ENDROIT",
+        "TITLE": "Redécouvrez le plaisir de choisir votre prochaine histoire",
+        "DESCRIPTION": "Literally, la librairie qui répertorie tous vos livres favoris. Parcourez un univers de livres et enrichissez votre bibliothèque en toute simplicité.",
+        "BUTTON": "Explorer"
+      },
+      "HIGHLIGHT": {
+        "HEADLINE": "Notre sélection",
+        "BUTTON": "Ajouter au panier"
+      }
+    },
+    "CATALOG": {
+      "CREATE": "Créer un produit",
+      "FILTERS": {
+        "TITLE": "Filtres",
+        "CLEAR": "Tout retirer"
+      },
+      "PRODUCT": {
+        "ADD": "Ajouter au panier"
+      }
+    },
+    "PRODUCT": {
+      "ADD": "Ajouter au panier",
+      "DESCRIPTION": {
+        "TITLE": "Description"
+      },
+      "DETAILS": {
+        "TITLE": "Détails",
+        "AUTHOR": "Auteur",
+        "ILLUSTRATOR": "Illustrateur",
+        "EDITOR": "Editeur",
+        "PUBLISHING_DATE": "Date de publication",
+        "EAN": "EAN",
+        "PAGES": "Nombre de pages",
+        "WEIGHT": "Poids",
+        "FORMAT": "Format"
+      }
+    },
+    "ERROR": {
+      "HEADLINE": "PAGE INTROUVABLE",
+      "DESCRIPTION": "On dirait que cette page n’existe pas ou qu’une erreur est survenue.",
+      "TRY_LATER": "Vous pouvez re-essayer plus tard ou contacter l’équipe de développement !",
+      "BUTTON": "Revenir sur le site"
+    }
+  },
+  "LAYOUT": {
+    "HEADER": {
+      "SEARCH": "Chercher par nom",
+      "BUTTONS": {
+        "CART": "Panier",
+        "FAVORITES": "Favoris",
+        "LOGIN": "Se connecter"
+      }
+    },
+    "FOOTER": {
+      "BUTTONS": {
+        "HOME": "Accueil",
+        "CATALOG": "Catalogue",
+        "ABOUT": "A propos"
+      },
+      "DISCLAIMER": "Projet fictif à but pédagogique — aucune transaction n'est réelle.",
+      "TECHNOLOGIES": "Réalisé avec Angular & Spring Boot · © 2026"
+    }
+  }
+}

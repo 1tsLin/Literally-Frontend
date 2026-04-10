@@ -3,10 +3,12 @@ import { CatalogProductComponent } from './catalog-product/catalog-product.compo
 import { CatalogFiltersComponent } from './catalog-filters/catalog-filters.component';
 import { RouterLink } from '@angular/router';
 import { ProductService } from '../../shared/services/product.service';
-import { LanguageEnum } from '../../shared/enums/language.enum';
 import { CommonModule } from '@angular/common';
-import { switchMap } from 'rxjs';
+import { combineLatest, switchMap } from 'rxjs';
 import { CatalogFilterService } from '../../shared/services/catalog-filter.service';
+import { TranslateModule } from '@ngx-translate/core';
+import { AppStateService } from '../../shared/services/app-state.service';
+import { toObservable } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-catalog',
@@ -15,6 +17,7 @@ import { CatalogFilterService } from '../../shared/services/catalog-filter.servi
     CatalogFiltersComponent,
     RouterLink,
     CommonModule,
+    TranslateModule,
   ],
   templateUrl: './catalog.component.html',
   styleUrl: './catalog.component.css',
@@ -22,13 +25,17 @@ import { CatalogFilterService } from '../../shared/services/catalog-filter.servi
 export class CatalogComponent {
   private productService = inject(ProductService);
   private filterService = inject(CatalogFilterService);
+  private appState = inject(AppStateService);
 
   isAdmin = true;
   displayMobileFilter = false;
 
-  catalogProducts$ = this.filterService.filters$.pipe(
-    switchMap((filters) =>
-      this.productService.getCatalog(LanguageEnum.FRENCH, filters),
+  catalogProducts$ = combineLatest([
+    toObservable(this.appState.language),
+    this.filterService.filters$,
+  ]).pipe(
+    switchMap(([lang, filters]) =>
+      this.productService.getCatalog(lang, filters),
     ),
   );
 }

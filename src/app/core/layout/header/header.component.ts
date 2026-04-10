@@ -2,10 +2,11 @@ import { Component, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { CatalogFilterService } from '../../../shared/services/catalog-filter.service';
 import { FormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterModule, FormsModule],
+  imports: [RouterModule, FormsModule, TranslateModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })

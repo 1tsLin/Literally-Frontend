@@ -7,7 +7,7 @@
     <input
       class="search-bar"
       type="text"
-      placeholder="Chercher par nom"
+      [placeholder]="'LAYOUT.HEADER.SEARCH' | translate"
       [(ngModel)]="searchInput"
       (keydown.enter)="search()"
     />
@@ -19,15 +19,15 @@
   <nav class="right-section">
     <a routerLink="/cart" class="cart-button">
       <img src="/icons/cart-icon.svg" />
-      <p>Panier</p>
+      <p>{{ "LAYOUT.HEADER.BUTTONS.CART" | translate }}</p>
     </a>
     <a routerLink="/favorites" class="favorite-button">
       <img src="/icons/favorite-icon.svg" />
-      <p>Favoris</p>
+      <p>{{ "LAYOUT.HEADER.BUTTONS.FAVORITES" | translate }}</p>
     </a>
     <a routerLink="/login" class="profile-button">
       <img src="/icons/profile-icon.svg" />
-      <p>Se connecter</p>
+      <p>{{ "LAYOUT.HEADER.BUTTONS.LOGIN" | translate }}</p>
     </a>
   </nav>
 </header>
