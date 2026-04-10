@@ -3,10 +3,11 @@ import { GradeComponent } from '../../../shared/components/grade/grade.component
 import { CatalogProduct } from '../../../shared/interfaces/catalog-product.model';
 import { MediaService } from '../../../shared/services/media.service';
 import { Router } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-catalog-product',
-  imports: [GradeComponent],
+  imports: [GradeComponent, TranslateModule],
   templateUrl: './catalog-product.component.html',
   styleUrl: './catalog-product.component.css',
 })

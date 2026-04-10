@@ -28,7 +28,7 @@
     <p class="book-price">{{ product.price }}<span class="currency">€</span></p>
     <div class="cart-button-row">
       <button class="add-cart-button" (click)="$event.stopPropagation()">
-        Ajouter au panier
+        {{ "PAGES.CATALOG.PRODUCT.ADD" | translate }}
       </button>
     </div>
   </div>

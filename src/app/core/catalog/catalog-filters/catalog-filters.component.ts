@@ -6,22 +6,17 @@ import { GradeComponent } from '../../../shared/components/grade/grade.component
 import { BookFormatEnum } from '../../../shared/enums/book-format.enum';
 import { BookGenreEnum } from '../../../shared/enums/book-genre.enum';
 import { BookAudienceEnum } from '../../../shared/enums/book-audience.enum';
-import {
-  authors,
-  editors,
-  illustrators,
-  series,
-} from '../../../shared/dummy-data';
+import { series } from '../../../shared/dummy-data';
 import { CatalogFilter } from '../../../shared/interfaces/catalog-filter.model';
-import { ProductService } from '../../../shared/services/product.service';
 import { ContributorService } from '../../../shared/services/contributor.service';
 import { ContributorCategoryEnum } from '../../../shared/enums/contributor-category.enum';
 import { map } from 'rxjs';
 import { CatalogFilterService } from '../../../shared/services/catalog-filter.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-catalog-filters',
-  imports: [CommonModule, FormsModule, GradeComponent],
+  imports: [CommonModule, FormsModule, GradeComponent, TranslateModule],
   templateUrl: './catalog-filters.component.html',
   styleUrl: './catalog-filters.component.css',
 })
@@ -34,7 +29,7 @@ export class CatalogFiltersComponent {
   filters = this.filterService.filters;
   filterState: Record<FilterTypeEnum, boolean> = {
     [FilterTypeEnum.PRICE]: false,
-    [FilterTypeEnum.SERIE]: false,
+    [FilterTypeEnum.SERIES]: false,
     [FilterTypeEnum.GRADE]: false,
     [FilterTypeEnum.FORMAT]: false,
     [FilterTypeEnum.GENRE]: false,

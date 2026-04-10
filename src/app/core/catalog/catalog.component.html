@@ -7,7 +7,7 @@
         [routerLink]="['/products/configuration']"
         [queryParams]="{ id: null }"
       >
-        Créer un produit
+        {{ "PAGES.CATALOG.CREATE" | translate }}
       </button>
     </div>
   }
@@ -15,7 +15,8 @@
     <!-- Mobile version of filters -->
     <div class="filters-mobile-btn">
       <button (click)="displayMobileFilter = !displayMobileFilter">
-        Filtres <img src="/icons/filters/filters-icon.svg" />
+        {{ "PAGES.CATALOG.FILTERS.TITLE" | translate }}
+        <img src="/icons/filters/filters-icon.svg" />
       </button>
       @if (displayMobileFilter) {
         <app-catalog-filters></app-catalog-filters>

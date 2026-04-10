@@ -17,7 +17,7 @@
 .home-button,
 .catalog-button,
 .about-button,
-.github-button {
+.language-button {
   font-size: 15px;
   color: #be7339;
   text-decoration: none;
@@ -28,7 +28,7 @@
 .home-button:hover,
 .catalog-button:hover,
 .about-button:hover,
-.github-button:hover {
+.language-button:hover {
   text-decoration: underline;
 }
 

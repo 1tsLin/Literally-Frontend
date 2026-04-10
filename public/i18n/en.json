@@ -1,0 +1,126 @@
+{
+  "ENUMS": {
+    "LANGUAGE": {
+      "FRENCH": "French",
+      "ENGLISH": "English"
+    },
+    "BOOK_FORMAT": {
+      "NOVEL": "Novel",
+      "SHORT_STORY": "Short story",
+      "POETRY": "Poetry",
+      "PLAY": "Play",
+      "COMIC": "Comic",
+      "MANGA": "Manga",
+      "MANHWA": "Manhwa",
+      "MANHUA": "Manhua",
+      "GRAPHIC_NOVEL": "Graphic novel"
+    },
+    "BOOK_AUDIENCE": {
+      "CHILDREN": "Children",
+      "TEEN": "Teens",
+      "ADULT": "Adults",
+      "SHONEN": "Shonen",
+      "SEINEN": "Seinen",
+      "SHOJO": "Shojo",
+      "JOSEI": "Josei"
+    },
+    "BOOK_GENRE": {
+      "FANTASY": "Fantasy",
+      "SCI_FI": "Sci-fi",
+      "ROMANCE": "Romance",
+      "THRILLER": "Thriller",
+      "MYSTERY": "Mystery",
+      "HORROR": "Horror",
+      "HISTORICAL": "Historical",
+      "DRAMA": "Drama",
+      "ADVENTURE": "Adventure",
+      "SLICE_OF_LIFE": "Slice of life"
+    },
+    "CONTRIBUTOR": {
+      "EDITOR": "Editor",
+      "AUTHOR": "Author",
+      "ILLUSTRATOR": "Illustrator"
+    },
+    "MEDIA_CATEGORY": {
+      "REVIEW": "Review",
+      "PRODUCT_COVER": "Cover",
+      "PRODUCT_BACK": "Back",
+      "SERIES": "Series"
+    },
+    "FILTER_TYPE": {
+      "PRICE": "Price",
+      "SERIES": "Series",
+      "GRADE": "Reviews",
+      "FORMAT": "Format",
+      "GENRE": "Genre",
+      "AUDIENCE": "Audience",
+      "CONTRIBUTOR": "Contributors"
+    }
+  },
+  "PAGES": {
+    "HOME": {
+      "HERO": {
+        "HEADLINE": "EVERYTHING IN ONE PLACE",
+        "TITLE": "Rediscover the pleasure of choosing your next story",
+        "DESCRIPTION": "Literally, the bookstore that lists all your favorite books. Browse a universe of books and easily enrich your library.",
+        "BUTTON": "Explore"
+      },
+      "HIGHLIGHT": {
+        "HEADLINE": "Our Selection",
+        "BUTTON": "Add to cart"
+      }
+    },
+    "CATALOG": {
+      "CREATE": "Create a product",
+      "FILTERS": {
+        "TITLE": "Filters",
+        "CLEAR": "Remove all"
+      },
+      "PRODUCT": {
+        "ADD": "Add to cart"
+      }
+    },
+    "PRODUCT": {
+      "ADD": "Add to cart",
+      "DESCRIPTION": {
+        "TITLE": "Description"
+      },
+      "DETAILS": {
+        "TITLE": "Details",
+        "AUTHOR": "Author",
+        "ILLUSTRATOR": "Illustrator",
+        "EDITOR": "Editor",
+        "PUBLISHING_DATE": "Publishing date",
+        "EAN": "EAN",
+        "PAGES": "Number of pages",
+        "WEIGHT": "Weight",
+        "FORMAT": "Format"
+      }
+    },
+    "ERROR": {
+      "HEADLINE": "PAGE NOT FOUND",
+      "DESCRIPTION": "It looks like this page doesn't exist or an error has occurred.",
+      "TRY_LATER": "You can try again later or contact the development team !",
+      "BUTTON": "Return to the site"
+    }
+  },
+  "LAYOUT": {
+    "HEADER": {
+      "SEARCH": "Search by name",
+      "BUTTONS": {
+        "CART": "Cart",
+        "FAVORITES": "Favorites",
+        "LOGIN": "Login"
+      }
+    },
+    "FOOTER": {
+      "BUTTONS": {
+        "HOME": "Home",
+        "CATALOG": "Catalog",
+        "ABOUT": "About"
+      },
+      "DISCLAIMER": "Fictional project for educational purposes — no transactions are real.",
+      "TECHNOLOGIES": "Built with Angular & Spring Boot · © 2026"
+    }
+  }
+}
