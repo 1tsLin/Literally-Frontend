@@ -97,6 +97,19 @@
         "FORMAT": "Format"
       }
     },
+    "ABOUT": {
+      "HEADLINE": "Fictional project · Educational purpose",
+      "TITLE": {
+        "1": "An online bookstore,",
+        "2": "to learn by building"
+      },
+      "DESCRIPTION": "This site is a professional project designed to explore and put into practice full-stack web development, from design to deployment.",
+      "TAGS": {
+        "FRONTEND": "Angular v19",
+        "BACKEND": "Spring Boot v4",
+        "DATABASE": "PostgreSQL"
+      }
+    },
     "ERROR": {
       "HEADLINE": "PAGE NOT FOUND",
       "DESCRIPTION": "It looks like this page doesn't exist or an error has occurred.",

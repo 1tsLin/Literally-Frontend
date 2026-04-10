@@ -111,6 +111,19 @@
         "FORMAT": "Format"
       }
     },
+    "ABOUT": {
+      "HEADLINE": "Projet fictif · But pédagogique",
+      "TITLE": {
+        "1": "Une librairie en ligne,",
+        "2": "pour apprendre en faisant"
+      },
+      "DESCRIPTION": "Ce site est un projet professionnel conçu pour explorer et mettre en pratique le développement web full-stack, de la conception à la mise en ligne.",
+      "TAGS": {
+        "FRONTEND": "Angular v19",
+        "BACKEND": "Spring Boot v4",
+        "DATABASE": "PostgreSQL"
+      }
+    },
     "ERROR": {
       "HEADLINE": "PAGE INTROUVABLE",
       "DESCRIPTION": "On dirait que cette page n’existe pas ou qu’une erreur est survenue.",

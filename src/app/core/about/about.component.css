@@ -1,0 +1,97 @@
+.page-content {
+  min-height: calc(85vh - 64px);
+  display: flex;
+  padding: 10px 300px 10px 300px;
+  justify-content: space-between;
+}
+
+.text-content {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+}
+
+.title {
+  color: #d86f6f;
+  font-size: 44px;
+  font-weight: bold;
+  line-height: 110%;
+  margin: 15px 0 15px 0;
+}
+
+.description {
+  color: #d86f6f;
+  font-size: 20px;
+  margin-bottom: 20px;
+  max-width: 800px;
+}
+
+/*-- Tags --*/
+.headline-tag,
+.stack-tag {
+  padding: 10px 20px 10px 20px;
+  border-radius: 20px;
+  font-size: 16px;
+  background-color: white;
+}
+
+.headline-tag {
+  color: #d86f6f;
+  border: 1px solid #d86f6f;
+}
+
+.stack-tag {
+  color: #659fe2;
+  border: 1px solid #659fe2;
+}
+
+.tag-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+/* Mobile (Phones) : < 768px */
+@media (max-width: 767px) {
+  .page-content {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .text-content {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .tag-row {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  img {
+    width: 100%;
+  }
+}
+
+/* Mobile (Tablets) : 768px — 1024px */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .page-content {
+    flex-direction: column;
+    padding: 50px;
+    justify-content: start;
+    gap: 20px;
+  }
+}
+
+/* Computers : 1025px — 1440px */
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .page-content {
+    padding: 10px 100px 10px 100px;
+  }
+}
+
+/* Big screens : > 1440px */
+@media (min-width: 1441px) {
+}
