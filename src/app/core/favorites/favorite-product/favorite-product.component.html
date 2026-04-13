@@ -13,7 +13,11 @@
     ></app-grade>
     <p class="book-price">{{ product.price }}<span class="currency">€</span></p>
     <div class="button-row">
-      <a class="delete-button">Supprimer</a>
+      <a
+        class="delete-button"
+        (click)="removeFavorite(); $event.stopPropagation()"
+        >{{ "PAGES.FAVORITES.DELETE" | translate }}</a
+      >
     </div>
   </div>
 </div>

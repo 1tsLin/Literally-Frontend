@@ -97,6 +97,10 @@
         "FORMAT": "Format"
       }
     },
+    "FAVORITES": {
+      "TITLE": "Your favorites",
+      "DELETE": "Delete"
+    },
     "ABOUT": {
       "HEADLINE": "Fictional project · Educational purpose",
       "TITLE": {

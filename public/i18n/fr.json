@@ -111,6 +111,10 @@
         "FORMAT": "Format"
       }
     },
+    "FAVORITES": {
+      "TITLE": "Vos favoris",
+      "DELETE": "Supprimer"
+    },
     "ABOUT": {
       "HEADLINE": "Projet fictif · But pédagogique",
       "TITLE": {

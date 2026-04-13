@@ -14,6 +14,9 @@ export class FavoriteService {
 
   readonly items = this._items.asReadonly();
   readonly totalItems = computed(() => this._items().length);
+  readonly itemIds = computed(() =>
+    this.items().map((item) => item.product_id),
+  );
 
   isInFavorites(product_id: string): boolean {
     return this._items().some((i) => i.product_id === product_id);
