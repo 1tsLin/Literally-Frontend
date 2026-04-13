@@ -1,7 +1,5 @@
-import { v4 as uuid } from 'uuid';
-
 export interface CatalogProduct {
-  productId?: typeof uuid;
+  productId: string;
   title: string;
   authorName: string;
   grade: number;

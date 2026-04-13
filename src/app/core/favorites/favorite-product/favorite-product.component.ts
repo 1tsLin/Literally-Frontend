@@ -8,22 +8,16 @@ import { FavoriteService } from '../../../shared/services/favorite.service';
 import { CartService } from '../../../shared/services/cart.service';
 
 @Component({
-  selector: 'app-catalog-product',
+  selector: 'app-favorite-product',
   imports: [GradeComponent, TranslateModule],
-  templateUrl: './catalog-product.component.html',
-  styleUrl: './catalog-product.component.css',
+  templateUrl: './favorite-product.component.html',
+  styleUrl: './favorite-product.component.css',
 })
-export class CatalogProductComponent implements OnInit {
+export class FavoriteProductComponent implements OnInit {
   @Input() product!: CatalogProduct;
 
   private router = inject(Router);
   private mediaService = inject(MediaService);
-  private favoriteService = inject(FavoriteService);
-  private cartService = inject(CartService);
-
-  isInFavorites = computed(() =>
-    this.favoriteService.isInFavorites(this.product.productId),
-  );
 
   productCoverUrl = '/image-placeholder.svg';
 
@@ -37,13 +31,5 @@ export class CatalogProductComponent implements OnInit {
 
   seeDetails() {
     this.router.navigate(['/product/' + this.product.productId]);
-  }
-
-  toggleFavorite() {
-    this.favoriteService.toggle(this.product.productId);
-  }
-
-  addToCart() {
-    this.cartService.add(this.product.productId);
   }
 }

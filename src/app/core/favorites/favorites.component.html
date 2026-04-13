@@ -1,0 +1,8 @@
+<div class="page-content">
+  <div class="title">Vos favoris</div>
+  <div class="products-grid">
+    @for (product of hightlightProducts$ | async; track product.productId) {
+      <app-favorite-product [product]="product"></app-favorite-product>
+    }
+  </div>
+</div>
