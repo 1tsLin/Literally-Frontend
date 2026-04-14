@@ -96,6 +96,7 @@
     },
     "PRODUCT": {
       "ADD": "Ajouter au panier",
+      "TOAST": "Le produit a été ajouté au panier.",
       "DESCRIPTION": {
         "TITLE": "Description"
       },
@@ -109,6 +110,28 @@
         "PAGES": "Nombre de pages",
         "WEIGHT": "Poids",
         "FORMAT": "Format"
+      }
+    },
+    "FAVORITES": {
+      "TITLE": "Vos favoris",
+      "EMPTY": "Vous n'avez aucun favori pour le moment.",
+      "DELETE": "Supprimer"
+    },
+    "CART": {
+      "CONTENT": {
+        "TITLE": "Votre panier",
+        "UNIT": "/unité",
+        "QUANTITY": "Quantité :",
+        "EMPTY": "Vous n'avez aucun article dans le panier pour le moment."
+      },
+      "TOTAL": {
+        "TITLE": "Récapitulatif",
+        "CART": "Panier",
+        "ARTICLES": "articles",
+        "SHIPPING": "Frais de livraison",
+        "TOTAL": "TOTAL",
+        "TAXES": "TVA incluse",
+        "BUTTON": "Passer au paiement"
       }
     },
     "ABOUT": {

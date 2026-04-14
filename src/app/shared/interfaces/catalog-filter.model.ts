@@ -1,9 +1,10 @@
-import { v4 as uuid } from 'uuid';
 import { BookFormatEnum } from '../enums/book-format.enum';
 import { BookAudienceEnum } from '../enums/book-audience.enum';
 import { BookGenreEnum } from '../enums/book-genre.enum';
 
 export interface CatalogFilter {
+  productIds?: string[];
+
   title?: string;
   price?: number;
   grade?: number;

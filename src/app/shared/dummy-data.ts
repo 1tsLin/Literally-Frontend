@@ -10,6 +10,7 @@ import { v4 as uuid } from 'uuid';
 
 export const catalogProducts: CatalogProduct[] = [
   {
+    productId: '1',
     title: 'Runes vol.1 - Les milles visages',
     authorName: 'Carlos Sanchez',
     grade: 3.9,
@@ -19,6 +20,7 @@ export const catalogProducts: CatalogProduct[] = [
     illustration: '/book-cover/runes-vol.1.jpg',
   },
   {
+    productId: '2',
     title: 'Runes vol.2 - Le Labyrinthe',
     authorName: 'Carlos Sanchez',
     grade: 4.2,
@@ -28,6 +30,7 @@ export const catalogProducts: CatalogProduct[] = [
     illustration: '/book-cover/runes-vol.2.jpg',
   },
   {
+    productId: '3',
     title: 'Mon amie fantome vol.1 - Première rencontre',
     authorName: 'Michelle Tolo',
     grade: 5,

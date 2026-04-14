@@ -1,4 +1,11 @@
-import { Component, inject, OnInit } from '@angular/core';
+import {
+  Component,
+  computed,
+  inject,
+  OnInit,
+  signal,
+  Signal,
+} from '@angular/core';
 import { ProductService } from '../../../services/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../../../interfaces/product.model';
@@ -10,6 +17,8 @@ import { MediaCategoryEnum } from '../../../enums/media-category.enum';
 import { MediaService } from '../../../services/media.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { AppStateService } from '../../../services/app-state.service';
+import { FavoriteService } from '../../../services/favorite.service';
+import { CartService } from '../../../services/cart.service';
 
 @Component({
   selector: 'app-product-details',
@@ -26,6 +35,14 @@ export class ProductDetailsComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private appState = inject(AppStateService);
+  private favoriteService = inject(FavoriteService);
+  private cartService = inject(CartService);
+
+  private productId = signal<string | undefined>(undefined);
+  isInFavorites = computed(() => {
+    const id = this.productId();
+    return id ? this.favoriteService.isInFavorites(id) : false;
+  });
 
   id?: string;
   product?: Product;
@@ -37,7 +54,6 @@ export class ProductDetailsComponent implements OnInit {
   editor?: Contributor;
 
   publishingDate?: string;
-  isFavorite: boolean = false;
 
   coverImageUrl?: string;
   backImageUrl?: string;
@@ -50,6 +66,7 @@ export class ProductDetailsComponent implements OnInit {
       this.productService.getProduct(this.id).subscribe({
         next: (product) => {
           this.product = product;
+          this.productId.set(product.id);
           this.publishingDate = product.publishingDate
             ? new Date(product.publishingDate).toLocaleDateString('fr-FR')
             : undefined;
@@ -85,6 +102,14 @@ export class ProductDetailsComponent implements OnInit {
 
   changeActiveImage(category: MediaCategoryEnum) {
     this.activeImage = category;
+  }
+
+  toggleFavorite() {
+    if (this.product) this.favoriteService.toggle(this.product.id!);
+  }
+
+  addToCart() {
+    if (this.product) this.cartService.add(this.product.id!);
   }
 
   get getDescription() {

@@ -6,11 +6,9 @@
     <div class="favorite-button-row">
       <button
         class="add-favorite-button"
-        (click)="
-          product.isFavorite = !product.isFavorite; $event.stopPropagation()
-        "
+        (click)="toggleFavorite(); $event.stopPropagation()"
       >
-        @if (product.isFavorite) {
+        @if (isInFavorites()) {
           <img src="/icons/added-favorite.svg" />
         } @else {
           <img src="/icons/add-favorite.svg" />
@@ -25,9 +23,14 @@
       [grade]="product.grade"
       [totalReviews]="product.reviews"
     ></app-grade>
-    <p class="book-price">{{ product.price }}<span class="currency">€</span></p>
+    <p class="book-price">
+      {{ product.price | number: "1.2-2" }}<span class="currency">€</span>
+    </p>
     <div class="cart-button-row">
-      <button class="add-cart-button" (click)="$event.stopPropagation()">
+      <button
+        class="add-cart-button"
+        (click)="addToCart(); $event.stopPropagation()"
+      >
         {{ "PAGES.CATALOG.PRODUCT.ADD" | translate }}
       </button>
     </div>

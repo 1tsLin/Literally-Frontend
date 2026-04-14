@@ -82,6 +82,7 @@
     },
     "PRODUCT": {
       "ADD": "Add to cart",
+      "TOAST": "Product was added to the cart.",
       "DESCRIPTION": {
         "TITLE": "Description"
       },
@@ -95,6 +96,28 @@
         "PAGES": "Number of pages",
         "WEIGHT": "Weight",
         "FORMAT": "Format"
+      }
+    },
+    "FAVORITES": {
+      "TITLE": "Your favorites",
+      "EMPTY": "You got no favorites at the moment.",
+      "DELETE": "Delete"
+    },
+    "CART": {
+      "CONTENT": {
+        "TITLE": "Your cart",
+        "UNIT": "/unit",
+        "QUANTITY": "Quantity :",
+        "EMPTY": "You have no article in your cart at the moment."
+      },
+      "TOTAL": {
+        "TITLE": "Summary",
+        "CART": "Cart",
+        "ARTICLES": "articles",
+        "SHIPPING": "Shipping cost",
+        "TOTAL": "TOTAL",
+        "TAXES": "VAT included",
+        "BUTTON": "Proceed to payment"
       }
     },
     "ABOUT": {

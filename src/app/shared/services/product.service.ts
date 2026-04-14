@@ -62,6 +62,11 @@ export class ProductService {
       if (filters.price) params = params.set('price', filters.price.toString());
       if (filters.authorId) params = params.set('authorId', filters.authorId);
       if (filters.editorId) params = params.set('editorId', filters.editorId);
+      if (filters.productIds?.length) {
+        filters.productIds.forEach((id) => {
+          params = params.append('productIds', id);
+        });
+      }
       if (filters.illustratorId)
         params = params.set('illustratorId', filters.illustratorId);
 

@@ -1,0 +1,12 @@
+<div class="page-content">
+  <div class="title">{{ "PAGES.FAVORITES.TITLE" | translate }}</div>
+  @if ((hightlightProducts$ | async)?.length === 0) {
+    <p class="description">{{ "PAGES.FAVORITES.EMPTY" | translate }}</p>
+  } @else {
+    <div class="products-grid">
+      @for (product of hightlightProducts$ | async; track product.productId) {
+        <app-favorite-product [product]="product"></app-favorite-product>
+      }
+    </div>
+  }
+</div>
