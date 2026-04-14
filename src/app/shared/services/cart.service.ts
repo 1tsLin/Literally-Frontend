@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, signal, computed } from '@angular/core';
+import { Injectable, signal, computed, inject } from '@angular/core';
 import { map, Observable, tap } from 'rxjs';
+import { ToastService } from './toast.service';
+import { TranslateService } from '@ngx-translate/core';
 
 export interface CartItem {
   productId: string;
@@ -13,6 +15,9 @@ const CART_KEY = 'cart_items';
   providedIn: 'root',
 })
 export class CartService {
+  private toastService = inject(ToastService);
+  private translateService = inject(TranslateService);
+
   private _items = signal<CartItem[]>(this.load());
 
   readonly items = this._items.asReadonly();
@@ -33,6 +38,10 @@ export class CartService {
           )
         : [...items, { productId: productId, quantity }];
 
+      this.toastService.show(
+        this.translateService.instant('PAGES.PRODUCT.TOAST'),
+        'success',
+      );
       return this.save(updated);
     });
   }

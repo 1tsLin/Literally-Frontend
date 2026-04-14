@@ -96,6 +96,7 @@
     },
     "PRODUCT": {
       "ADD": "Ajouter au panier",
+      "TOAST": "Le produit a été ajouté au panier.",
       "DESCRIPTION": {
         "TITLE": "Description"
       },

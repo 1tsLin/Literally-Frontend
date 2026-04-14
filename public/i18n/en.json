@@ -82,6 +82,7 @@
     },
     "PRODUCT": {
       "ADD": "Add to cart",
+      "TOAST": "Product was added to the cart.",
       "DESCRIPTION": {
         "TITLE": "Description"
       },
