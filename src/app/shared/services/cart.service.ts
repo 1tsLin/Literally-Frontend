@@ -3,7 +3,7 @@ import { Injectable, signal, computed } from '@angular/core';
 import { map, Observable, tap } from 'rxjs';
 
 export interface CartItem {
-  product_id: string;
+  productId: string;
   quantity: number;
 }
 
@@ -19,37 +19,36 @@ export class CartService {
   readonly totalItems = computed(() =>
     this._items().reduce((sum, i) => sum + i.quantity, 0),
   );
+  readonly itemIds = computed(() => this.items().map((item) => item.productId));
 
-  add(product_id: string, quantity = 1): void {
+  add(productId: string, quantity = 1): void {
     this._items.update((items) => {
-      const existing = items.find((i) => i.product_id === product_id);
+      const existing = items.find((i) => i.productId === productId);
 
       const updated = existing
         ? items.map((i) =>
-            i.product_id === product_id
+            i.productId === productId
               ? { ...i, quantity: i.quantity + quantity }
               : i,
           )
-        : [...items, { product_id, quantity }];
+        : [...items, { productId: productId, quantity }];
 
       return this.save(updated);
     });
   }
 
-  remove(product_id: string): void {
+  remove(productId: string): void {
     this._items.update((items) =>
-      this.save(items.filter((i) => i.product_id !== product_id)),
+      this.save(items.filter((i) => i.productId !== productId)),
     );
   }
 
-  updateQuantity(product_id: string, quantity: number): void {
-    if (quantity <= 0) return this.remove(product_id);
+  updateQuantity(productId: string, quantity: number): void {
+    if (quantity <= 0) return this.remove(productId);
 
     this._items.update((items) =>
       this.save(
-        items.map((i) =>
-          i.product_id === product_id ? { ...i, quantity } : i,
-        ),
+        items.map((i) => (i.productId === productId ? { ...i, quantity } : i)),
       ),
     );
   }

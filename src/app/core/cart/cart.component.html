@@ -1,0 +1,54 @@
+<div class="page-content">
+  <div>
+    <div class="title">{{ "PAGES.CART.CONTENT.TITLE" | translate }}</div>
+    <div class="card">
+      @if ((cartProducts$ | async)?.length === 0) {
+        <p class="description">{{ "PAGES.CART.CONTENT.EMPTY" | translate }}</p>
+      } @else {
+        <div class="products-grid">
+          @for (product of cartProducts$ | async; track product.productId) {
+            <app-cart-product [product]="product"></app-cart-product>
+          }
+        </div>
+      }
+    </div>
+  </div>
+  <div>
+    <div class="title">{{ "PAGES.CART.TOTAL.TITLE" | translate }}</div>
+    <div class="card">
+      <div style="padding: 10px">
+        <div class="row">
+          <div>
+            {{ "PAGES.CART.TOTAL.CART" | translate }}
+            <span class="detail"
+              >({{ totalItems$ | async }}
+              {{ "PAGES.CART.TOTAL.ARTICLES" | translate }})</span
+            >
+          </div>
+          <div>
+            <span>{{ totalPrice$ | async | number: "1.2-2" }} €</span>
+          </div>
+        </div>
+        <hr class="divider" />
+        <div class="row">
+          <div>{{ "PAGES.CART.TOTAL.SHIPPING" | translate }}</div>
+          <div>{{ shippingCost$ | async | number: "1.2-2" }} €</div>
+        </div>
+        <hr class="divider" />
+        <div class="total-row">
+          <div>
+            <span class="total"
+              >{{ "PAGES.CART.TOTAL.TOTAL" | translate }} </span
+            ><span class="detail"
+              >({{ "PAGES.CART.TOTAL.TAXES" | translate }})</span
+            >
+          </div>
+          <div class="price">{{ total$ | async | number: "1.2-2" }} €</div>
+        </div>
+        <button class="pay-button">
+          {{ "PAGES.CART.TOTAL.BUTTON" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

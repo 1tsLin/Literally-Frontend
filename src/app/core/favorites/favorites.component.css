@@ -10,6 +10,10 @@
   margin-bottom: 10px;
 }
 
+.description {
+  color: #898a9c;
+}
+
 .products-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;

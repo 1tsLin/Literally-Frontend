@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { ProductService } from '../../shared/services/product.service';
 import { AppStateService } from '../../shared/services/app-state.service';
 import { toObservable } from '@angular/core/rxjs-interop';
-import { combineLatest, switchMap } from 'rxjs';
+import { combineLatest, of, switchMap } from 'rxjs';
 import { FavoriteProductComponent } from './favorite-product/favorite-product.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
@@ -24,7 +24,9 @@ export class FavoritesComponent {
     toObservable(this.appState.language),
   ]).pipe(
     switchMap(([ids, lang]) =>
-      this.productService.getCatalog(lang, { productIds: ids }),
+      ids.length === 0
+        ? of([])
+        : this.productService.getCatalog(lang, { productIds: ids }),
     ),
   );
 }

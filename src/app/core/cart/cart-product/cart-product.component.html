@@ -12,14 +12,18 @@
       [totalReviews]="product.reviews"
     ></app-grade>
     <p class="book-price">
-      {{ product.price | number: "1.2-2" }}<span class="currency">€</span>
+      {{ product.price | number: "1.2-2" }}<span class="currency">€</span
+      ><span class="per-item">
+        {{ "PAGES.CART.CONTENT.UNIT" | translate }}</span
+      >
+    </p>
+    <p class="quantity">
+      {{ "PAGES.CART.CONTENT.QUANTITY" | translate }} {{ product.quantity }}
     </p>
     <div class="button-row">
-      <a
-        class="delete-button"
-        (click)="removeFavorite(); $event.stopPropagation()"
-        >{{ "PAGES.FAVORITES.DELETE" | translate }}</a
-      >
+      <a class="delete-button" (click)="remove(); $event.stopPropagation()">{{
+        "PAGES.FAVORITES.DELETE" | translate
+      }}</a>
     </div>
   </div>
 </div>

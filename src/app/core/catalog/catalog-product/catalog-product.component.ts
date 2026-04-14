@@ -6,10 +6,11 @@ import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { FavoriteService } from '../../../shared/services/favorite.service';
 import { CartService } from '../../../shared/services/cart.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-catalog-product',
-  imports: [GradeComponent, TranslateModule],
+  imports: [GradeComponent, TranslateModule, CommonModule],
   templateUrl: './catalog-product.component.html',
   styleUrl: './catalog-product.component.css',
 })

@@ -23,7 +23,9 @@
       [grade]="product.grade"
       [totalReviews]="product.reviews"
     ></app-grade>
-    <p class="book-price">{{ product.price }}<span class="currency">€</span></p>
+    <p class="book-price">
+      {{ product.price | number: "1.2-2" }}<span class="currency">€</span>
+    </p>
     <div class="cart-button-row">
       <button
         class="add-cart-button"

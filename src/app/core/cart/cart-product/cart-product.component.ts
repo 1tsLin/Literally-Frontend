@@ -4,21 +4,23 @@ import { CatalogProduct } from '../../../shared/interfaces/catalog-product.model
 import { MediaService } from '../../../shared/services/media.service';
 import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { FavoriteService } from '../../../shared/services/favorite.service';
+import { CartItem, CartService } from '../../../shared/services/cart.service';
 import { CommonModule } from '@angular/common';
 
+export type CartProduct = CatalogProduct & CartItem;
+
 @Component({
-  selector: 'app-favorite-product',
+  selector: 'app-cart-product',
   imports: [GradeComponent, TranslateModule, CommonModule],
-  templateUrl: './favorite-product.component.html',
-  styleUrl: './favorite-product.component.css',
+  templateUrl: './cart-product.component.html',
+  styleUrl: './cart-product.component.css',
 })
-export class FavoriteProductComponent implements OnInit {
-  @Input() product!: CatalogProduct;
+export class CartProductComponent implements OnInit {
+  @Input() product!: CartProduct;
 
   private router = inject(Router);
   private mediaService = inject(MediaService);
-  private favoriteService = inject(FavoriteService);
+  private cartService = inject(CartService);
 
   productCoverUrl = '/image-placeholder.svg';
 
@@ -34,7 +36,7 @@ export class FavoriteProductComponent implements OnInit {
     this.router.navigate(['/product/' + this.product.productId]);
   }
 
-  removeFavorite() {
-    this.favoriteService.remove(this.product.productId);
+  remove() {
+    this.cartService.remove(this.product.productId);
   }
 }
